@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+#region Summary
+#endregion
 using UnityEngine;
 
 namespace HouseDefence.UI
