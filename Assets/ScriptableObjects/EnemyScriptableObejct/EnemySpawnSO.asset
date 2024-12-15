@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc993bbe6d606e45af6edc1f4aa9d17, type: 3}
+  m_Name: EnemySpawnSO
+  m_EditorClassIdentifier: 
+  spawnDelay: 5
+  waveDelay: 7
+  enemyDefinitions:
+  - type: 0
+    prefab: {fileID: 578861405773373795, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
+  - type: 1
+    prefab: {fileID: 5505866817948683002, guid: c1b71e309df286d42bfbc1b76af29650, type: 3}
+  waves:
+  - type: 0
+    count: 5
+  - type: 1
+    count: 5

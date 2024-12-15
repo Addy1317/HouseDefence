@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HouseDefence
+namespace HouseDefence.Manager
 {
     public class GameManager : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        [Header("Pause Menu UI")]
+        [SerializeField] private GameObject _pauseMenuUI;
+
+        private void Update()
         {
-        
+            InputsforPauseButton();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void InputsforPauseButton()
         {
-        
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                _pauseMenuUI.SetActive(!_pauseMenuUI.activeSelf);
+            }
         }
     }
 }

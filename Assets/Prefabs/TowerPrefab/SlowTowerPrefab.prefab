@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2965899888031411507
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 625869477649075183, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 625869477649075183, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399369330061424104, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399369330061424104, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399369330061424104, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399369330061424104, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399369330061424104, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399369330061424104, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399369330061424104, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399369330061424104, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399369330061424104, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399369330061424104, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417472947775558281, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665799499607725429, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_Name
+      value: SlowTowerPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007214211691055352, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0284c1d342fc8e9479a1482be4eb0f45, type: 2}
+    - target: {fileID: 6746168972705971995, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0284c1d342fc8e9479a1482be4eb0f45, type: 2}
+    m_RemovedComponents:
+    - {fileID: 5902595699669294040, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5015548352283139909, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2468955690933053721}
+  m_SourcePrefab: {fileID: 100100000, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+--- !u!1 &7832376152061276790 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5015548352283139909, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
+  m_PrefabInstance: {fileID: 2965899888031411507}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2468955690933053721
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7832376152061276790}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

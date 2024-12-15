@@ -1,26 +1,50 @@
 #region Summary
 #endregion
+using TMPro;
 using UnityEngine;
 
 namespace HouseDefence.UI
 {
     public class UIManager : MonoBehaviour
     {
-        [Header("Pause Menu UI")]
-        [SerializeField] private GameObject _pauseMenuUI;
+        [Header("House Health UI")]
+        [SerializeField] private TextMeshProUGUI _houseHealthText;
 
+        [Header("Waves UI")]
+        [SerializeField] private TextMeshProUGUI _wavesText;
 
-        private void Update()
+        [Header("Kills Count UI")]
+        [SerializeField] private TextMeshProUGUI _killCountText;
+
+        [Header("Currency UI")]
+        [SerializeField] private TextMeshProUGUI _coinText;
+
+        [Header("Tower Selection Panel")]
+        [SerializeField] private GameObject _towerSelectionPanel;
+
+        internal void UpdatePlayerHealth(int currentHealth, int maxHealth)
         {
-            InputsforPauseButton();   
+            _houseHealthText.text = $"Health: {currentHealth}/{maxHealth}";
         }
 
-        private void InputsforPauseButton()
+        internal void UpdateWaveCount(int currentWave)
         {
-           if( Input.GetKeyDown(KeyCode.P))
-           {
-                _pauseMenuUI.SetActive(!_pauseMenuUI.activeSelf);
-           }
+            _wavesText.text = $"Wave: {currentWave}";
+        }
+
+        internal void UpdateKillCount(int kills)
+        {
+            _killCountText.text = $"Kills: {kills}";
+        }
+
+        internal void UpdateCurrency(int coins)
+        {
+            _coinText.text = $"Coins: {coins}";
+        }
+
+        internal void ActivateTowerSelectionPanel()
+        {
+            _towerSelectionPanel.SetActive(true);
         }
     }
 }
