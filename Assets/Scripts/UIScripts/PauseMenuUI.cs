@@ -8,9 +8,11 @@ namespace HouseDefence.UI
 {
     public class PauseMenuUI : MonoBehaviour
     {
-        [Header("PaueMenu Buttons")]
+        [Header("PauseMenu Panels")]
         [SerializeField] private GameObject _pauseMenuPanel;
         [SerializeField] private GameObject _settingsPanel;
+
+        [Header("PaueMenu UI Buttons")]
         [SerializeField] private Button _resumeButton;
         [SerializeField] private Button _restartButton;
         [SerializeField] private Button _homeButton;
@@ -76,11 +78,5 @@ namespace HouseDefence.UI
             _settingsPanel.SetActive(false);
         }
         #endregion
-
-        public void OnPauseButton()
-        {
-            //creditsPanel.SetActive(!creditsPanel.activeSelf);
-            _pauseMenuPanel.SetActive(!_pauseMenuPanel.activeSelf);
-        }
     }
 }

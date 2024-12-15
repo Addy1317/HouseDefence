@@ -9,6 +9,9 @@ namespace HouseDefence.Manager
         [Header("Pause Menu UI")]
         [SerializeField] private GameObject _pauseMenuUI;
 
+        [Header("GameOver Menu UI")]
+        [SerializeField] private GameObject _gameOverMenuUI;
+
         private void Update()
         {
             InputsforPauseButton();
@@ -20,6 +23,11 @@ namespace HouseDefence.Manager
             {
                 _pauseMenuUI.SetActive(!_pauseMenuUI.activeSelf);
             }
+        }
+
+        internal void ActivateGameOverMenu()
+        {
+            _gameOverMenuUI.SetActive(true);
         }
     }
 }
