@@ -23,18 +23,18 @@ MonoBehaviour:
   - waveName: Wave - 1
     enemyWaveEntries:
     - enemyTypeInWave: 0
-      enemyCountInWave: 0
+      enemyCountInWave: 5
     - enemyTypeInWave: 0
-      enemyCountInWave: 0
+      enemyCountInWave: 5
   - waveName: Wave - 2
     enemyWaveEntries:
     - enemyTypeInWave: 0
-      enemyCountInWave: 0
+      enemyCountInWave: 7
     - enemyTypeInWave: 0
-      enemyCountInWave: 0
+      enemyCountInWave: 7
   - waveName: Wave - 3
     enemyWaveEntries:
     - enemyTypeInWave: 0
-      enemyCountInWave: 0
+      enemyCountInWave: 9
     - enemyTypeInWave: 0
-      enemyCountInWave: 0
+      enemyCountInWave: 9

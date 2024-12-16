@@ -1,3 +1,4 @@
+using HouseDefence.Events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,16 +7,13 @@ namespace HouseDefence
 {
     public class EventManager : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        public EventController OnHouseDeathEvent {  get; private set; }
+        public EventController OnWaveCompletedEvent {  get; private set; }
 
-        // Update is called once per frame
-        void Update()
+        public EventManager()
         {
-        
+            OnHouseDeathEvent = new EventController();
+            OnWaveCompletedEvent = new EventController();
         }
     }
 }

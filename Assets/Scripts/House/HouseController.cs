@@ -1,21 +1,15 @@
 #region Summary
 #endregion
+using HouseDefence.Services;
 using UnityEngine;
 
 namespace HouseDefence.House
 {
     public class HouseController : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        private void OnHouseDeath()
         {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
+            GameService.Instance.eventManager.OnHouseDeathEvent.InvokeEvent();
         }
     }
 }

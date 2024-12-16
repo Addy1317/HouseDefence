@@ -39,7 +39,7 @@ namespace HouseDefence.Services
             { "GameManager", gameManager },
             { "AudioManager", audioManager },
             { "CurrencyManager", currencyManager },
-            {"SpawnManager", enemySpawnManager },
+            { "SpawnManager", enemySpawnManager },
             { "UIManager", uiManager },
             { "EventManager", eventManager }
             };

@@ -3,7 +3,6 @@ using HouseDefence.Services;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace HouseDefence.EnemySpawn
 {
@@ -18,11 +17,12 @@ namespace HouseDefence.EnemySpawn
 
         private Dictionary<EnemyType, GenericObjectPool<EnemyController>> _enemyPools;
         private int _currentWave = 0;
+        private int _activeEnemies = 0;
 
         private void Start()
         {
             InitializePools();
-            StartCoroutine(SpawnWaves());
+            StartCoroutine(SpawnWavesRoutine());
         }
 
         private void InitializePools()
@@ -40,14 +40,13 @@ namespace HouseDefence.EnemySpawn
             }
         }
 
-        private IEnumerator SpawnWaves()
+        private IEnumerator SpawnWavesRoutine()
         {
             foreach (var wave in _enemySpawnSO.waveConfigurations)
             {
                 _currentWave++;
                 Debug.Log($"Starting Wave {_currentWave}");
 
-                // Update the Wave Count in the UI
                 GameService.Instance.uiManager.UpdateWaveCount(_currentWave);
 
                 List<EnemyWaveEntry> randomizedEntries = new List<EnemyWaveEntry>(wave.enemyWaveEntries);
@@ -58,13 +57,26 @@ namespace HouseDefence.EnemySpawn
                     for (int i = 0; i < enemyWaveEntry.enemyCountInWave; i++)
                     {
                         var enemy = _enemyPools[enemyWaveEntry.enemyTypeInWave].Get();
+
+                        if (enemy == null)
+                        {
+                            Debug.LogWarning($"Pool limit reached for {enemyWaveEntry.enemyTypeInWave}!");
+                            continue;
+                        }
+
                         enemy.gameObject.SetActive(true);
                         enemy.transform.position = _spawnPoint.position;
                         enemy.Initialize(_houseTarget);
-                       
+
+                        _activeEnemies++; 
+
                         yield return new WaitForSeconds(_enemySpawnSO.spawnDelay);
                     }
                 }
+
+                yield return new WaitUntil(() => _activeEnemies == 0);
+
+                Debug.Log($"Wave {_currentWave} completed!");
 
                 yield return new WaitForSeconds(_enemySpawnSO.waveDelay);
             }
@@ -87,9 +99,12 @@ namespace HouseDefence.EnemySpawn
         {
             if (_enemyPools.ContainsKey(enemyType))
             {
-                enemyController.ResetHealth(); // Reset health before returning to the pool
-                enemyController.gameObject.SetActive(false); // Deactivate the enemy
+                enemyController.ResetHealth(); 
+                enemyController.gameObject.SetActive(false); 
                 _enemyPools[enemyType].ReturnToPool(enemyController);
+
+                _activeEnemies--; 
+                if (_activeEnemies < 0) _activeEnemies = 0; 
             }
             else
             {
