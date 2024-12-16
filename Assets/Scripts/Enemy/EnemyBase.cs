@@ -6,9 +6,9 @@ namespace HouseDefence.Enemy
 {
     public abstract class EnemyBase : MonoBehaviour
     {
-        [SerializeField] private EnemyData _enemyData; 
-        public EnemyData EnemyData => _enemyData; 
-        public float CurrentHealth => currentHealth; 
+        [SerializeField] private EnemySO enemySO; 
+        public EnemySO EnemySO => enemySO; 
+        public float EnemyCurrentHealth => currentHealth; 
 
         public delegate void OnEnemyDeath(float goldReward);
         public static event OnEnemyDeath EnemyDeathEvent;
@@ -16,7 +16,7 @@ namespace HouseDefence.Enemy
         private float currentHealth;
         protected virtual void Start()
         {
-            currentHealth = _enemyData.maxHealth; 
+            currentHealth = enemySO.maxHealth; 
         }
 
         public void TakeDamage(float damage)
@@ -28,10 +28,14 @@ namespace HouseDefence.Enemy
                 Die();
             }
         }
+        public void ResetEnemyHealth() // Added method to reset health
+        {
+            currentHealth = enemySO.maxHealth;
+        }
 
         protected virtual void Die()
         {
-            EnemyDeathEvent?.Invoke(_enemyData.goldReward); 
+            EnemyDeathEvent?.Invoke(enemySO.goldReward); 
             Destroy(gameObject); 
         }
 

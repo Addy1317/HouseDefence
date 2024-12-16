@@ -13,7 +13,7 @@ namespace HouseDefence.Services
         [SerializeField] internal GameManager gameManager;
         [SerializeField] internal AudioManager audioManager;
         [SerializeField] internal CurrencyManager currencyManager;
-        [SerializeField] internal EnemySpawnManager spawnManager;
+        [SerializeField] internal EnemySpawnManager enemySpawnManager;
         [SerializeField] internal UIManager uiManager;
         [SerializeField] internal EventManager eventManager;
 
@@ -39,7 +39,7 @@ namespace HouseDefence.Services
             { "GameManager", gameManager },
             { "AudioManager", audioManager },
             { "CurrencyManager", currencyManager },
-            {"SpawnManager", spawnManager },
+            {"SpawnManager", enemySpawnManager },
             { "UIManager", uiManager },
             { "EventManager", eventManager }
             };

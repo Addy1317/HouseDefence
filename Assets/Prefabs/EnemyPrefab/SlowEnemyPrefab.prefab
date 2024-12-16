@@ -12,13 +12,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlowEnemyPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 578861405773373795, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 729610017067449375, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a378585fa5e84e646a230f774658ae5b, type: 2}
+    - target: {fileID: 3294321530801288590, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294321530801288590, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294321530801288590, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3937893492090274864, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.84
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3937893492090274864, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -26,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3937893492090274864, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.687
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3937893492090274864, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -56,6 +72,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5999912441835931908, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
+      propertyPath: enemySO
+      value: 
+      objectReference: {fileID: 11400000, guid: a3fea5ed3f695e74eb99b97f5fae37a8, type: 2}
     - target: {fileID: 5999912441835931908, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
       propertyPath: healthBar
       value: 

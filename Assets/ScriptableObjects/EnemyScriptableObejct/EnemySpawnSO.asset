@@ -12,15 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc993bbe6d606e45af6edc1f4aa9d17, type: 3}
   m_Name: EnemySpawnSO
   m_EditorClassIdentifier: 
-  spawnDelay: 5
-  waveDelay: 7
+  spawnDelay: 10
+  waveDelay: 20
   enemyDefinitions:
-  - type: 0
-    prefab: {fileID: 578861405773373795, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
-  - type: 1
-    prefab: {fileID: 5505866817948683002, guid: c1b71e309df286d42bfbc1b76af29650, type: 3}
-  waves:
-  - type: 0
-    count: 5
-  - type: 1
-    count: 5
+  - enemyType: 0
+    enemyPrefab: {fileID: 578861405773373795, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
+  - enemyType: 1
+    enemyPrefab: {fileID: 5505866817948683002, guid: c1b71e309df286d42bfbc1b76af29650, type: 3}
+  waveConfigurations:
+  - waveName: Wave - 1
+    enemyWaveEntries:
+    - enemyTypeInWave: 0
+      enemyCountInWave: 0
+    - enemyTypeInWave: 0
+      enemyCountInWave: 0
+  - waveName: Wave - 2
+    enemyWaveEntries:
+    - enemyTypeInWave: 0
+      enemyCountInWave: 0
+    - enemyTypeInWave: 0
+      enemyCountInWave: 0
+  - waveName: Wave - 3
+    enemyWaveEntries:
+    - enemyTypeInWave: 0
+      enemyCountInWave: 0
+    - enemyTypeInWave: 0
+      enemyCountInWave: 0

@@ -17,6 +17,7 @@ namespace HouseDefence.EnemySpawn
         [SerializeField] private EnemySpawnSO _enemySpawnSO;
 
         private Dictionary<EnemyType, GenericObjectPool<EnemyController>> _enemyPools;
+        private int _currentWave = 0;
 
         private void Start()
         {
@@ -30,28 +31,39 @@ namespace HouseDefence.EnemySpawn
 
             foreach (var definition in _enemySpawnSO.enemyDefinitions)
             {
-                if (!_enemyPools.ContainsKey(definition.type))
-                {
-                    _enemyPools[definition.type] = new GenericObjectPool<EnemyController>(
-                        definition.prefab.GetComponent<EnemyController>(), 10
-                    );
-                }
+                Transform poolParent = new GameObject($"{definition.enemyType}Pool").transform;
+                poolParent.SetParent(_spawnPoint);
+
+                _enemyPools[definition.enemyType] = new GenericObjectPool<EnemyController>(
+                    definition.enemyPrefab.GetComponent<EnemyController>(), 10, poolParent
+                );
             }
         }
 
         private IEnumerator SpawnWaves()
         {
-            foreach (var wave in _enemySpawnSO.waves)
+            foreach (var wave in _enemySpawnSO.waveConfigurations)
             {
-                Debug.Log($"Spawning {wave.count} {wave.type} enemies");
+                _currentWave++;
+                Debug.Log($"Starting Wave {_currentWave}");
 
-                for (int i = 0; i < wave.count; i++)
+                // Update the Wave Count in the UI
+                GameService.Instance.uiManager.UpdateWaveCount(_currentWave);
+
+                List<EnemyWaveEntry> randomizedEntries = new List<EnemyWaveEntry>(wave.enemyWaveEntries);
+                ShuffleList(randomizedEntries);
+
+                foreach (var enemyWaveEntry in randomizedEntries)
                 {
-                    var enemy = _enemyPools[wave.type].Get();
-                    enemy.transform.position = _spawnPoint.position;
-                    enemy.Initialize(_houseTarget);
-
-                    yield return new WaitForSeconds(_enemySpawnSO.spawnDelay);
+                    for (int i = 0; i < enemyWaveEntry.enemyCountInWave; i++)
+                    {
+                        var enemy = _enemyPools[enemyWaveEntry.enemyTypeInWave].Get();
+                        enemy.gameObject.SetActive(true);
+                        enemy.transform.position = _spawnPoint.position;
+                        enemy.Initialize(_houseTarget);
+                       
+                        yield return new WaitForSeconds(_enemySpawnSO.spawnDelay);
+                    }
                 }
 
                 yield return new WaitForSeconds(_enemySpawnSO.waveDelay);
@@ -60,15 +72,28 @@ namespace HouseDefence.EnemySpawn
             Debug.Log("All waves completed!");
         }
 
-        public void ReturnEnemyToPool(EnemyController enemy, EnemyType type)
+        private void ShuffleList(List<EnemyWaveEntry> list)
         {
-            if (_enemyPools.ContainsKey(type))
+            for (int i = list.Count - 1; i > 0; i--)
             {
-                _enemyPools[type].ReturnToPool(enemy);
+                int randomIndex = Random.Range(0, i + 1);
+                var temp = list[i];
+                list[i] = list[randomIndex];
+                list[randomIndex] = temp;
+            }
+        }
+
+        public void ReturnEnemyToPool(EnemyController enemyController, EnemyType enemyType)
+        {
+            if (_enemyPools.ContainsKey(enemyType))
+            {
+                enemyController.ResetHealth(); // Reset health before returning to the pool
+                enemyController.gameObject.SetActive(false); // Deactivate the enemy
+                _enemyPools[enemyType].ReturnToPool(enemyController);
             }
             else
             {
-                Debug.LogWarning($"Enemy type {type} not found in pool.");
+                Debug.LogWarning($"Enemy type {enemyType} not found in pool.");
             }
         }
     }

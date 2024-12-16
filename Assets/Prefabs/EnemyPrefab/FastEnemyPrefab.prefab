@@ -16,9 +16,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: FastEnemyPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1011876417297853346, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149608946738200399, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149608946738200399, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149608946738200399, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3505025470732242673, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.876
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3505025470732242673, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
       propertyPath: m_LocalPosition.y
@@ -26,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3505025470732242673, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.687
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3505025470732242673, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
       propertyPath: m_LocalRotation.w
@@ -99,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d935acd957374c449fffd715d298286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyData: {fileID: 11400000, guid: 18b4ce2528b9d5a45bd9d64d568bf2d9, type: 2}
+  enemySO: {fileID: 11400000, guid: 18b4ce2528b9d5a45bd9d64d568bf2d9, type: 2}
   _navMeshAgent: {fileID: 9094139561308469625}
   _healthBar: {fileID: 4616896266761801006}
 --- !u!114 &4616896266761801006 stripped

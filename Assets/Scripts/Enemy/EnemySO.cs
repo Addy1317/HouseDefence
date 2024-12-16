@@ -1,3 +1,4 @@
+using HouseDefence.EnemySpawn;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,10 @@ using UnityEngine;
 namespace HouseDefence.Enemy
 {
     [CreateAssetMenu(fileName = "EnemySO", menuName = "Game/EnemyData", order = 0)]
-    public class EnemyData : ScriptableObject
+    public class EnemySO : ScriptableObject
     {
         [SerializeField] internal string enemyName;
+        [SerializeField] internal EnemyType enemyType;
         [SerializeField] internal float maxHealth;
         [SerializeField] internal float moveSpeed;
         [SerializeField] internal int damageToHouse;

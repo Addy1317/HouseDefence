@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SlowEnemySO
   m_EditorClassIdentifier: 
   enemyName: SlowEnemy
+  enemyType: 1
   maxHealth: 100
   moveSpeed: 2
   damageToHouse: 10
