@@ -84,6 +84,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBarSlider
       objectReference: {fileID: 0}
+    - target: {fileID: 8662305425274844088, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
+      propertyPath: m_Speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662305425274844088, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8796390974745096072, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
