@@ -1,4 +1,4 @@
-using HouseDefence.Enemy;
+using HouseDefence.ZombieEnemy;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

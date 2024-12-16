@@ -7,7 +7,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
-namespace HouseDefence.Enemy
+namespace HouseDefence.ZombieEnemy
 {
     public class EnemyController : EnemyBase
     {

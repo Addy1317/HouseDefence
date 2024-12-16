@@ -1,21 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HouseDefence.Tower
 {
-    public class TowerSO : MonoBehaviour
+    public enum TowerType
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        FastTower,
+        SlowTower
+    }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+    [CreateAssetMenu(fileName = "TowerSO", menuName = "Game/TowerData", order = 0)]
+    public class TowerSO : ScriptableObject
+    {
+        [SerializeField] internal string towerName;
+        [SerializeField] internal TowerType towerType;
+        [SerializeField] internal float towerMaxHealth;
+        [SerializeField] internal float towerRange;
+        [SerializeField] internal float towerAttackSpeed;
+        [SerializeField] internal int damageToEnemy;
+        [SerializeField] internal int towerCost;
     }
 }

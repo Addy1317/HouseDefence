@@ -1,21 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace HouseDefence.Tower
 {
-    public class TowerController : MonoBehaviour
+    public class TowerController : TowerBase
     {
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField] private Slider _towerHealthBar;
+        protected override void UpdateTowerHealthBar()
         {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
+           
         }
     }
 }

@@ -1,4 +1,4 @@
-using HouseDefence.Enemy;
+using HouseDefence.ZombieEnemy;
 using HouseDefence.Services;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace HouseDefence.EnemySpawn
 {
-    public class EnemySpawnManager : MonoBehaviour
+    public class SpawnManager : MonoBehaviour
     {
         [Header("Enemy References")]
         [SerializeField] private Transform _spawnPoint;

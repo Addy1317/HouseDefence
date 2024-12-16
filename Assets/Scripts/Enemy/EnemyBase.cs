@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HouseDefence.Enemy
+namespace HouseDefence.ZombieEnemy
 {
     public abstract class EnemyBase : MonoBehaviour
     {
@@ -19,7 +19,7 @@ namespace HouseDefence.Enemy
             currentHealth = enemySO.maxHealth; 
         }
 
-        public void TakeDamage(float damage)
+        public void EnemyTakeDamage(float damage)
         {
             currentHealth -= damage;
             UpdateHealthBar();

@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: eb08902082ace3c4092207b344232c1c, type: 2}
     - target: {fileID: 5805240599702045834, guid: 9ea1696b8730b6243af418284727e4ce, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7309860434413985260, guid: 9ea1696b8730b6243af418284727e4ce, type: 3}
       propertyPath: m_AnchorMax.x
@@ -32,6 +32,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8465667473893669328, guid: 9ea1696b8730b6243af418284727e4ce, type: 3}
+      propertyPath: towerSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 3429e63889a764c4bbcb8c4ee196b9e3, type: 2}
+    - target: {fileID: 8465667473893669328, guid: 9ea1696b8730b6243af418284727e4ce, type: 3}
+      propertyPath: towerHead
+      value: 
+      objectReference: {fileID: 3887088832372433814}
+    - target: {fileID: 8465667473893669328, guid: 9ea1696b8730b6243af418284727e4ce, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 407834132551818107, guid: a89bf8daa5c22a2409f2db30da5a10ac, type: 3}
     - target: {fileID: 9130433967366267883, guid: 9ea1696b8730b6243af418284727e4ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -77,3 +89,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ea1696b8730b6243af418284727e4ce, type: 3}
+--- !u!4 &3887088832372433814 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6354553915947070869, guid: 9ea1696b8730b6243af418284727e4ce, type: 3}
+  m_PrefabInstance: {fileID: 7916870390086227459}
+  m_PrefabAsset: {fileID: 0}

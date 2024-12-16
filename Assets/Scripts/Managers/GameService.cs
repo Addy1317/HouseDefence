@@ -1,8 +1,10 @@
 using HouseDefence.Audio;
+using HouseDefence.Bullet;
 using HouseDefence.EnemySpawn;
 using HouseDefence.Generic;
-using HouseDefence.GridLayout;
+using HouseDefence.Grid;
 using HouseDefence.Manager;
+using HouseDefence.Tower;
 using HouseDefence.UI;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,8 +15,10 @@ namespace HouseDefence.Services
     {
         [SerializeField] internal GameManager gameManager;
         [SerializeField] internal AudioManager audioManager;
+        [SerializeField] internal BulletManager bulletManager;
         [SerializeField] internal CurrencyManager currencyManager;
-        [SerializeField] internal EnemySpawnManager enemySpawnManager;
+        [SerializeField] internal SpawnManager enemySpawnManager;
+        [SerializeField] internal TowerManager towerManager;
         [SerializeField] internal GridManager gridManager;
         [SerializeField] internal UIManager uiManager;
         [SerializeField] internal EventManager eventManager;
@@ -40,9 +44,11 @@ namespace HouseDefence.Services
             {
             { "GameManager", gameManager },
             { "AudioManager", audioManager },
+            { "BulletManager", bulletManager },
             { "CurrencyManager", currencyManager },
             { "EnemySpawnManager", enemySpawnManager },
-            { "GridManager", gridManager },
+            { "TowerManager", towerManager },
+            { "CustomGridManager", gridManager },
             { "UIManager", uiManager },
             { "EventManager", eventManager }
             };
