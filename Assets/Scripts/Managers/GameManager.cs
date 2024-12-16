@@ -12,6 +12,8 @@ namespace HouseDefence.Manager
         [Header("GameOver Menu UI")]
         [SerializeField] private GameObject _gameOverMenuUI;
 
+        private bool isPaused = false;
+
         private void Update()
         {
             InputsforPauseButton();
@@ -29,5 +31,39 @@ namespace HouseDefence.Manager
         {
             _gameOverMenuUI.SetActive(true);
         }
+
+        #region Pause|Resume Methods
+        public void TogglePause()
+        {
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+
+        public void PauseGame()
+        {
+            Time.timeScale = 0f;
+            isPaused = true;
+            Debug.Log("Game Paused");
+        }
+
+        public void ResumeGame()
+        {
+            Time.timeScale = 1f;
+            isPaused = false;
+            Debug.Log("Game Resumed");
+        }
+
+        public bool IsGamePaused()
+        {
+            return isPaused;
+        }
+
+        #endregion
     }
 }
