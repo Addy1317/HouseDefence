@@ -1,3 +1,4 @@
+using HouseDefence.Services;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -19,12 +20,15 @@ namespace HouseDefence.UI
 
         [Header("Kills Count")]
         [SerializeField] private TextMeshProUGUI _totalKillsCountText;
+        private int _totalKills = 0;
 
         private void OnEnable()
         {
             _replayButton.onClick.AddListener(OnRelayButton);
             _homeButton.onClick.AddListener(OnHomeButton);
             _quitButton.onClick.AddListener(OnQuitButton);
+/*            int _totalKills = GameService.Instance.uiManager.GetKillCount(); 
+            UpdateKillCountDisplay(_totalKills);*/
         }
 
         private void OnDisable()
@@ -32,6 +36,12 @@ namespace HouseDefence.UI
             _replayButton.onClick.RemoveListener(OnRelayButton);
             _homeButton.onClick.RemoveListener(OnHomeButton);
             _quitButton.onClick.RemoveListener(OnQuitButton);
+        }
+
+        private void Start()
+        {
+            int _totalKills = GameService.Instance.uiManager.GetKillCount();
+            UpdateKillCountDisplay(_totalKills);
         }
 
         #region GameOver Buttons Methods
@@ -53,7 +63,10 @@ namespace HouseDefence.UI
         #endregion
 
         #region Total Kills Count Method
-
+        private void UpdateKillCountDisplay(int kills)
+        {
+            _totalKillsCountText.text = $"Total Kills: {_totalKills}";
+        }
         #endregion
     }
 }

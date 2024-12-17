@@ -72,6 +72,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5187549858278464550, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187549858278464550, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
+      propertyPath: m_Radius
+      value: 0.5000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187549858278464550, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
+      propertyPath: m_Center.x
+      value: 0.000000059604645
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187549858278464550, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187549858278464550, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
+      propertyPath: m_Center.z
+      value: -0.00000008940697
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187549858278464550, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7408295590381343500, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -90,7 +114,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8662305425274844088, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
       propertyPath: m_Radius
+      value: 0.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662305425274844088, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
+      propertyPath: m_Acceleration
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662305425274844088, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8796390974745096072, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -126,6 +158,7 @@ MonoBehaviour:
   enemySO: {fileID: 11400000, guid: 18b4ce2528b9d5a45bd9d64d568bf2d9, type: 2}
   _navMeshAgent: {fileID: 9094139561308469625}
   _healthBar: {fileID: 4616896266761801006}
+  _damageRange: 2
 --- !u!114 &4616896266761801006 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5048796785548855279, guid: 5b687df9ec4f72d4fa03c7a7e17c28be, type: 3}

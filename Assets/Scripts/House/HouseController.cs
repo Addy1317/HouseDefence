@@ -18,6 +18,13 @@ namespace HouseDefence.House
             _houseCurrentHealth = _houesMaxHealth;
             UpdateHouseUI();
         }
+        private void Update()
+        {
+            if( Input.GetKeyUp(KeyCode.D) )
+            {
+                TakeDamage(10);
+            }
+        }
 
         public void TakeDamage(int damage)
         {

@@ -1,5 +1,6 @@
 #region Summary
 #endregion
+using HouseDefence.Services;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,7 +30,19 @@ namespace HouseDefence.UI
 
         [Header("Tower Selection Panel")]
         [SerializeField] private GameObject _towerSelectionPanel;
+        private int _killCount = 0;
+        private int _coinCount = 0;
 
+        private void OnEnable()
+        {
+            GameService.Instance.eventManager.OnEnemyDeathEvent.AddListeners(OnEnemyDeath);
+        }
+
+        private void OnDisable()
+        {
+            GameService.Instance.eventManager.OnEnemyDeathEvent.RemoveListeners(OnEnemyDeath);
+
+        }
         #region House UI Methods
         internal void UpdateHealthbarUI(int currentHealth, int maxHealth, float healthPercentage)
         {
@@ -52,13 +65,23 @@ namespace HouseDefence.UI
         }
         #endregion
 
-        internal void UpdateWaveCount(int currentWave)
+        #region Enemy Death Methods
+        public int GetKillCount()
         {
-            _wavesText.text = $"Wave: {currentWave}";
+            return _killCount;
+        }
+
+        private void OnEnemyDeath(float goldReward)
+        {
+            _killCount++; 
+            _coinCount += Mathf.FloorToInt(goldReward); 
+            UpdateKillCount(_killCount); 
+            UpdateCurrency(_coinCount); 
         }
 
         internal void UpdateKillCount(int kills)
         {
+            _killCount = kills;
             _killCountText.text = $"Kills: {kills}";
         }
 
@@ -66,10 +89,16 @@ namespace HouseDefence.UI
         {
             _coinText.text = $"Coins: {coins}";
         }
+        #endregion
 
         internal void ActivateTowerSelectionPanel()
         {
             _towerSelectionPanel.SetActive(true);
+        }
+
+        internal void UpdateWaveCount(int currentWave)
+        {
+            _wavesText.text = $"Wave: {currentWave}";
         }
     }
 }

@@ -1,3 +1,4 @@
+using HouseDefence.Services;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +11,8 @@ namespace HouseDefence.ZombieEnemy
         public EnemySO EnemySO => enemySO; 
         public float EnemyCurrentHealth => currentHealth; 
 
-        public delegate void OnEnemyDeath(float goldReward);
-        public static event OnEnemyDeath EnemyDeathEvent;
-
         private float currentHealth;
+
         protected virtual void Start()
         {
             currentHealth = enemySO.maxHealth; 
@@ -35,7 +34,7 @@ namespace HouseDefence.ZombieEnemy
 
         protected virtual void Die()
         {
-            EnemyDeathEvent?.Invoke(enemySO.goldReward); 
+            GameService.Instance.eventManager.OnEnemyDeathEvent.InvokeEvents(enemySO.goldReward);
             Destroy(gameObject); 
         }
 

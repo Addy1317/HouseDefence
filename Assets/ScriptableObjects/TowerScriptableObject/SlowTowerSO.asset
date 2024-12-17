@@ -15,7 +15,7 @@ MonoBehaviour:
   towerName: SlowTower
   towerType: 1
   towerMaxHealth: 100
-  towerRange: 5
+  towerRange: 1.5
   towerAttackSpeed: 3
   damageToEnemy: 5
   towerCost: 10

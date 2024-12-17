@@ -12,7 +12,8 @@ namespace HouseDefence.ZombieEnemy
         [SerializeField] internal EnemyType enemyType;
         [SerializeField] internal float maxHealth;
         [SerializeField] internal float moveSpeed;
+        [SerializeField] internal float attackInterval;
         [SerializeField] internal int damageToHouse;
-        [SerializeField] internal float goldReward;
+        [SerializeField] internal int goldReward;
     }
 }

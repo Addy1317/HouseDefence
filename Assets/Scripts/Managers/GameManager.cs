@@ -14,6 +14,7 @@ namespace HouseDefence.Manager
         [SerializeField] private GameObject _gameOverMenuUI;
 
         private bool isPaused = false;
+        private int totalKills = 0;
 
         private void OnEnable()
         {
@@ -84,5 +85,6 @@ namespace HouseDefence.Manager
         }
 
         #endregion
+
     }
 }

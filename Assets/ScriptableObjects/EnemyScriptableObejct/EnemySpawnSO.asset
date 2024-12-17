@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemySpawnSO
   m_EditorClassIdentifier: 
   spawnDelay: 10
-  waveDelay: 20
+  waveDelay: 0
   enemyDefinitions:
   - enemyType: 0
     enemyPrefab: {fileID: 578861405773373795, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}

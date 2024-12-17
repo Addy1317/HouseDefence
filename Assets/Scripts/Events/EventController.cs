@@ -10,4 +10,12 @@ namespace HouseDefence.Events
         public void AddListener(Action listener) => baseEvent += listener;
         public void RemoveListener(Action listener) => baseEvent -= listener;
     }
+
+    public class EventsController<T> : MonoBehaviour
+    {
+        public event Action<T> baseEvent;
+        public void InvokeEvents(T value) => baseEvent?.Invoke(value); 
+        public void AddListeners(Action<T> listener) => baseEvent += listener;
+        public void RemoveListeners(Action<T> listener) => baseEvent -= listener;
+    }
 }

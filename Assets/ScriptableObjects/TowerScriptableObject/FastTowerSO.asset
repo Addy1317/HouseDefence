@@ -15,7 +15,7 @@ MonoBehaviour:
   towerName: FastTower
   towerType: 0
   towerMaxHealth: 100
-  towerRange: 5
+  towerRange: 2
   towerAttackSpeed: 10
   damageToEnemy: 3
   towerCost: 5

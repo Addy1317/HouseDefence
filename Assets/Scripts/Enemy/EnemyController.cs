@@ -1,4 +1,5 @@
 using HouseDefence.EnemySpawn;
+using HouseDefence.House;
 using HouseDefence.Services;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,19 +16,21 @@ namespace HouseDefence.ZombieEnemy
         [SerializeField] private Slider _healthBar;
 
         private Transform _houseTarget;
+        private bool isAttacking = false;                 
+        private float attackTimer = 0f;
 
         public void Initialize(Transform houseTarget)
         {
             Debug.Log("Enemy initialized and activated.");
-            _houseTarget = houseTarget; // Set the target
+            _houseTarget = houseTarget; 
             if (_navMeshAgent != null)
             {
-                _navMeshAgent.enabled = true; // Reactivate the NavMeshAgent
-                _navMeshAgent.SetDestination(_houseTarget.position); // Assign NavMeshAgent destination
+                _navMeshAgent.enabled = true; 
+                _navMeshAgent.SetDestination(_houseTarget.position); 
             }
 
-            ResetHealth(); // Reset health for reused enemies
-            gameObject.SetActive(true); // Reactivate the enemy
+            ResetHealth();
+            gameObject.SetActive(true); 
         }
 
         protected override void Start()
@@ -35,45 +38,49 @@ namespace HouseDefence.ZombieEnemy
             base.Start();
             if (_navMeshAgent != null)
             {
-                _navMeshAgent.speed = EnemySO.moveSpeed; // Use moveSpeed from EnemySO
+                _navMeshAgent.speed = EnemySO.moveSpeed; 
             }
         }
         private void Update()
         {
             if (_houseTarget != null)
             {
-                // Move the enemy towards the target
                 transform.position = Vector3.MoveTowards(transform.position, _houseTarget.position, 2f * Time.deltaTime);
             }
         }
 
-
         protected override void UpdateHealthBar()
         {
-            _healthBar.value = EnemyCurrentHealth / EnemySO.maxHealth; // Use maxHealth from EnemySO
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.transform == _houseTarget)
-            {
-                // Reduce player health through GameManager
-                // GameManager.Instance.ReduceHealth(EnemySO.damageToHouse);
-
-                DestroyEnemy(); // Handle destruction or pooling
-            }
+            _healthBar.value = EnemyCurrentHealth / EnemySO.maxHealth; 
         }
 
         private void DestroyEnemy()
         {
-            gameObject.SetActive(false); // Return to pool
-            GameService.Instance.enemySpawnManager.ReturnEnemyToPool(this, EnemySO.enemyType); // Use enemyType from EnemySO
+            Debug.Log("Enemy destroyed.");
+            gameObject.SetActive(false); 
+            GameService.Instance.enemySpawnManager.ReturnEnemyToPool(this, EnemySO.enemyType); 
         }
 
         internal void ResetHealth()
         {
             ResetEnemyHealth();
             UpdateHealthBar(); // Update UI
+        }
+
+
+        private void OnTriggerEnter(Collider other)
+        {
+            Debug.Log("Collided with House");
+            if (other.CompareTag("House")) 
+            {
+                HouseController houseController = other.GetComponent<HouseController>();
+                if (houseController != null)
+                {
+                    Debug.Log($"Enemy collided with the House. Damage to apply: {EnemySO.damageToHouse}");
+
+                    houseController.TakeDamage(EnemySO.damageToHouse);
+                }
+            }
         }
     }
 }
