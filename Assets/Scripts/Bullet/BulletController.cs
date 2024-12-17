@@ -10,7 +10,7 @@ namespace HouseDefence.Bullet
     {
         private EnemyController _targetEnemy;
         private float _damage;
-        private float speed = 10f;  // Bullet speed
+        private float speed = 5f;  
 
         public void Initialize(EnemyController enemy, float bulletDamage)
         {
@@ -18,9 +18,9 @@ namespace HouseDefence.Bullet
             _damage = bulletDamage;
         }
 
-        void Update()
+        private void Update()
         {
-            if (_targetEnemy != null)
+            if(_targetEnemy != null)
             {
                 // Move bullet towards enemy
                 Vector3 direction = (_targetEnemy.transform.position - transform.position).normalized;
@@ -29,7 +29,7 @@ namespace HouseDefence.Bullet
                 // Check for collision with enemy
                 if (Vector3.Distance(transform.position, _targetEnemy.transform.position) < 0.5f)
                 {
-                    _targetEnemy.EnemyTakeDamage(_damage); 
+                    _targetEnemy.EnemyTakeDamage(_damage);
                     ReturnToPool();
                 }
             }

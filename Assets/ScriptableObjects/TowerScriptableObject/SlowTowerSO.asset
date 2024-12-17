@@ -17,5 +17,5 @@ MonoBehaviour:
   towerMaxHealth: 100
   towerRange: 5
   towerAttackSpeed: 3
-  damageToTower: 5
+  damageToEnemy: 5
   towerCost: 10

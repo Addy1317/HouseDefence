@@ -1,8 +1,5 @@
 using HouseDefence.Bullet;
 using HouseDefence.ZombieEnemy;
-using HouseDefence.Tower;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using HouseDefence.Services;
 
@@ -25,7 +22,6 @@ namespace HouseDefence.Tower
 
         protected virtual void Start()
         {
-            
             if (towerSO != null)
             {
                 towerCurrentHealth = towerSO.towerMaxHealth;
@@ -36,7 +32,7 @@ namespace HouseDefence.Tower
             }
 
             bulletPool = new GenericObjectPool<BulletController>(bulletPrefab.GetComponent<BulletController>(), 10, transform);
-            attackCooldown = 1 / towerSO.towerAttackSpeed;  // Calculate cooldown from attack speed
+            attackCooldown = 1 / towerSO.towerAttackSpeed;  
         }
         protected void Update()
         {
