@@ -1,4 +1,5 @@
-using HouseDefence.ZombieEnemy;
+using HouseDefence.Enemy;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,17 +20,11 @@ namespace HouseDefence.EnemySpawn
     }
 
     [System.Serializable]
-    public struct EnemyWaveEntry
-    {
-        public EnemyType enemyTypeInWave; 
-        public int enemyCountInWave; 
-    }
-
-    [System.Serializable]
     public struct WaveData
     {
-        public string waveName; 
-        public List<EnemyWaveEntry> enemyWaveEntries; 
+        public string waveName;
+        public int totalEnemies;
+        public EnemyDefinition[] enemyDefinitions;
     }
 
     [CreateAssetMenu(fileName = "EnemySpawnSO", menuName = "Game/EnemySpawnSO", order = 0)]
@@ -39,26 +34,26 @@ namespace HouseDefence.EnemySpawn
         public float spawnDelay = 1.0f; 
         public float waveDelay = 5.0f; 
 
-        [Header("Enemy Definitions")]
-        public List<EnemyDefinition> enemyDefinitions; 
-
         [Header("Wave Configurations")]
-        public List<WaveData> waveConfigurations; 
+        public int poolSize = 10;
+        public List<WaveData> waveConfigurations;
 
         private void OnValidate()
         {
+            // Validate the total number of enemies and check for missing enemy types
             foreach (var wave in waveConfigurations)
             {
                 int totalEnemies = 0;
 
-                foreach (var entry in wave.enemyWaveEntries)
+                // Check each enemy definition in the wave
+                foreach (var definition in wave.enemyDefinitions)
                 {
-                    if (!EnemyTypeExists(entry.enemyTypeInWave))
+                    if (!EnemyTypeExists(definition.enemyType))
                     {
-                        Debug.LogWarning($"Enemy type {entry.enemyTypeInWave} in wave {wave.waveName} is not defined in Enemy Definitions!");
+                        Debug.LogWarning($"Enemy type {definition.enemyType} in wave {wave.waveName} is not defined in Enemy Definitions!");
                     }
 
-                    totalEnemies += entry.enemyCountInWave;
+                    totalEnemies += wave.totalEnemies;  // Assuming the totalEnemies value is the correct number of enemies in the wave
                 }
 
                 Debug.Log($"Wave {wave.waveName} has {totalEnemies} enemies configured.");
@@ -67,7 +62,9 @@ namespace HouseDefence.EnemySpawn
 
         private bool EnemyTypeExists(EnemyType type)
         {
-            return enemyDefinitions.Exists(def => def.enemyType == type);
+            return waveConfigurations.Exists(wave =>
+                    Array.Exists(wave.enemyDefinitions, def => def.enemyType == type)
+                );
         }
     }
 }

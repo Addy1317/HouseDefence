@@ -1,14 +1,15 @@
 using HouseDefence.Services;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace HouseDefence.Manager
 {
     public class GameManager : MonoBehaviour
     {
         [Header("Pause Menu UI")]
-        [SerializeField] private GameObject _pauseMenuUI;
+        [SerializeField]  GameObject _pauseMenuUI; 
+        [Header("PauseButton")]
+        [SerializeField] private Button _pauseButton;
 
         [Header("GameOver Menu UI")]
         [SerializeField] private GameObject _gameOverMenuUI;
@@ -19,38 +20,28 @@ namespace HouseDefence.Manager
         private void OnEnable()
         {
             GameService.Instance.eventManager.OnHouseDeathEvent.AddListener(ActivateGameOverMenu);
+            _pauseButton.onClick.AddListener(OnPauseButton);
         }
 
         private void OnDisable()
         {
             GameService.Instance.eventManager.OnHouseDeathEvent.RemoveListener(ActivateGameOverMenu);
-        }
-
-        private void Start()
-        {
-            
-        }
-
-        private void Update()
-        {
-            InputsforPauseButton();
+            _pauseButton.onClick.RemoveListener(OnPauseButton);
         }
 
         #region GameOver Methods
         internal void ActivateGameOverMenu()
         {
             _gameOverMenuUI.SetActive(true);
+            TogglePause();
         }
         #endregion
 
         #region Pause|Resume Methods
-
-        private void InputsforPauseButton()
+        private void OnPauseButton()
         {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                _pauseMenuUI.SetActive(!_pauseMenuUI.activeSelf);
-            }
+            _pauseMenuUI.SetActive(!_pauseMenuUI.activeSelf);
+            TogglePause();
         }
 
         public void TogglePause()
@@ -85,6 +76,5 @@ namespace HouseDefence.Manager
         }
 
         #endregion
-
     }
 }

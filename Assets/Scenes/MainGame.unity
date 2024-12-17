@@ -853,7 +853,6 @@ GameObject:
   - component: {fileID: 229642379}
   - component: {fileID: 229642378}
   - component: {fileID: 229642377}
-  - component: {fileID: 229642376}
   m_Layer: 5
   m_Name: GameOverCanvas
   m_TagString: Untagged
@@ -881,23 +880,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &229642376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 229642374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f33f7f0451248254eba204161e04608a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gameOverPanel: {fileID: 1553570420}
-  _replayButton: {fileID: 1738001196}
-  _homeButton: {fileID: 1933973898}
-  _quitButton: {fileID: 851005182}
-  _totalKillsCountText: {fileID: 393830481}
 --- !u!114 &229642377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2026,9 +2008,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '100
-
-'
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3152,7 +3132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -140}
+  m_AnchoredPosition: {x: 50, y: -80}
   m_SizeDelta: {x: 170, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &851005182
@@ -3273,9 +3253,9 @@ Transform:
   - {fileID: 635612575}
   - {fileID: 214246844}
   - {fileID: 1760469499}
-  - {fileID: 1995448842}
   - {fileID: 1169694365}
   - {fileID: 1796737593}
+  - {fileID: 1995448842}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &864798021
@@ -4367,6 +4347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pauseMenuUI: {fileID: 277646844}
+  _pauseButton: {fileID: 763234431}
   _gameOverMenuUI: {fileID: 1553570420}
 --- !u!1 &1182133898
 GameObject:
@@ -5814,6 +5795,7 @@ GameObject:
   - component: {fileID: 1553570421}
   - component: {fileID: 1553570423}
   - component: {fileID: 1553570422}
+  - component: {fileID: 1553570424}
   m_Layer: 5
   m_Name: GameOverPanel
   m_TagString: Untagged
@@ -5881,6 +5863,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553570420}
   m_CullTransparentMesh: 1
+--- !u!114 &1553570424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553570420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33f7f0451248254eba204161e04608a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameOverPanel: {fileID: 1553570420}
+  _replayButton: {fileID: 1738001196}
+  _homeButton: {fileID: 1933973898}
+  _quitButton: {fileID: 851005182}
+  _totalKillsCountText: {fileID: 393830481}
 --- !u!1 &1557380391
 GameObject:
   m_ObjectHideFlags: 0
@@ -6200,7 +6199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1738001195
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6656,7 +6655,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -80}
+  m_AnchoredPosition: {x: 50, y: -20}
   m_SizeDelta: {x: 170, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1933973898

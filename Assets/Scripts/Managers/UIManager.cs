@@ -1,5 +1,6 @@
 #region Summary
 #endregion
+using HouseDefence.Manager;
 using HouseDefence.Services;
 using TMPro;
 using UnityEngine;
@@ -30,6 +31,7 @@ namespace HouseDefence.UI
 
         [Header("Tower Selection Panel")]
         [SerializeField] private GameObject _towerSelectionPanel;
+
         private int _killCount = 0;
         private int _coinCount = 0;
 
@@ -52,15 +54,15 @@ namespace HouseDefence.UI
 
             if (healthPercentage > 0.5f)
             {
-                _houseHealthBarFill.color = _healthyColor; 
+                _houseHealthBarFill.color = _healthyColor;
             }
             else if (healthPercentage > 0.2f)
             {
-                _houseHealthBarFill.color = _midHealthColor; 
+                _houseHealthBarFill.color = _midHealthColor;
             }
             else
             {
-                _houseHealthBarFill.color = _criticalHealthColor; 
+                _houseHealthBarFill.color = _criticalHealthColor;
             }
         }
         #endregion
@@ -73,10 +75,10 @@ namespace HouseDefence.UI
 
         private void OnEnemyDeath(float goldReward)
         {
-            _killCount++; 
-            _coinCount += Mathf.FloorToInt(goldReward); 
-            UpdateKillCount(_killCount); 
-            UpdateCurrency(_coinCount); 
+            _killCount++;
+            _coinCount += Mathf.FloorToInt(goldReward);
+            UpdateKillCount(_killCount);
+            UpdateCurrency(_coinCount);
         }
 
         internal void UpdateKillCount(int kills)

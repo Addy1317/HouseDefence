@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HouseDefence.ZombieEnemy
+namespace HouseDefence.Enemy
 {
     public class EnemySpawner : MonoBehaviour
     {

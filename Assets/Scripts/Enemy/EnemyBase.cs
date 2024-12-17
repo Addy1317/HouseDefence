@@ -1,16 +1,13 @@
 using HouseDefence.Services;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace HouseDefence.ZombieEnemy
+namespace HouseDefence.Enemy
 {
     public abstract class EnemyBase : MonoBehaviour
     {
         [SerializeField] private EnemySO enemySO; 
         public EnemySO EnemySO => enemySO; 
         public float EnemyCurrentHealth => currentHealth; 
-
         private float currentHealth;
 
         protected virtual void Start()
@@ -18,24 +15,36 @@ namespace HouseDefence.ZombieEnemy
             currentHealth = enemySO.maxHealth; 
         }
 
-        public void EnemyTakeDamage(float damage)
+        public virtual void EnemyTakeDamage(float damage)
         {
             currentHealth -= damage;
             UpdateHealthBar();
             if (currentHealth <= 0)
             {
-                Die();
+                OnEnemyDeath();
             }
         }
-        public void ResetEnemyHealth() // Added method to reset health
+
+        public virtual void ResetEnemyHealth() 
         {
             currentHealth = enemySO.maxHealth;
         }
 
-        protected virtual void Die()
+        protected virtual void OnEnemyDeath()
         {
             GameService.Instance.eventManager.OnEnemyDeathEvent.InvokeEvents(enemySO.goldReward);
-            Destroy(gameObject); 
+
+            EnemyController enemyController = this as EnemyController;
+
+            if (enemyController != null)
+            {
+                gameObject.SetActive(false);
+                GameService.Instance.enemySpawnManager.ReturnEnemyToPool(enemyController, enemySO.enemyType);
+            }
+            else
+            {
+                Debug.LogError("Failed to cast EnemyBase to EnemyController");
+            }
         }
 
         protected abstract void UpdateHealthBar(); 

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HouseDefence.ZombieEnemy
+namespace HouseDefence.Enemy
 {
     [CreateAssetMenu(fileName = "EnemySO", menuName = "Game/EnemyData", order = 0)]
     public class EnemySO : ScriptableObject

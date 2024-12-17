@@ -1,4 +1,4 @@
-using HouseDefence.ZombieEnemy;
+using HouseDefence.Enemy;
 using HouseDefence.Services;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,16 +27,26 @@ namespace HouseDefence.EnemySpawn
 
         private void InitializePools()
         {
-            _enemyPools = new Dictionary<EnemyType, GenericObjectPool<EnemyController>>();
-
-            foreach (var definition in _enemySpawnSO.enemyDefinitions)
             {
-                Transform poolParent = new GameObject($"{definition.enemyType}Pool").transform;
-                poolParent.SetParent(_spawnPoint);
+                // Initialize pools for each enemy type based on the definitions in the EnemySpawnSO
+                _enemyPools = new Dictionary<EnemyType, GenericObjectPool<EnemyController>>();
 
-                _enemyPools[definition.enemyType] = new GenericObjectPool<EnemyController>(
-                    definition.enemyPrefab.GetComponent<EnemyController>(), 10, poolParent
-                );
+                foreach (var waveData in _enemySpawnSO.waveConfigurations)
+                {
+                    foreach (var definition in waveData.enemyDefinitions)
+                    {
+                        // Create pools for each enemy type
+                        if (!_enemyPools.ContainsKey(definition.enemyType))
+                        {
+                            Transform poolParent = new GameObject($"{definition.enemyType}Pool").transform;
+                            poolParent.SetParent(_spawnPoint);
+
+                            _enemyPools[definition.enemyType] = new GenericObjectPool<EnemyController>(
+                                definition.enemyPrefab.GetComponent<EnemyController>(), _enemySpawnSO.poolSize, poolParent
+                            );
+                        }
+                    }
+                }
             }
         }
 
@@ -49,18 +59,19 @@ namespace HouseDefence.EnemySpawn
 
                 GameService.Instance.uiManager.UpdateWaveCount(_currentWave);
 
-                List<EnemyWaveEntry> randomizedEntries = new List<EnemyWaveEntry>(wave.enemyWaveEntries);
-                ShuffleList(randomizedEntries);
+                // Randomize the enemy definitions to spawn from the wave's enemyDefinitions
+                List<EnemyDefinition> randomizedEnemies = new List<EnemyDefinition>(wave.enemyDefinitions);
+                ShuffleList(randomizedEnemies);
 
-                foreach (var enemyWaveEntry in randomizedEntries)
+                foreach (var enemyDefinition in randomizedEnemies)
                 {
-                    for (int i = 0; i < enemyWaveEntry.enemyCountInWave; i++)
+                    for (int i = 0; i < wave.totalEnemies; i++)
                     {
-                        var enemy = _enemyPools[enemyWaveEntry.enemyTypeInWave].Get();
+                        var enemy = _enemyPools[enemyDefinition.enemyType].Get();
 
                         if (enemy == null)
                         {
-                            Debug.LogWarning($"Pool limit reached for {enemyWaveEntry.enemyTypeInWave}!");
+                            Debug.LogWarning($"Pool limit reached for {enemyDefinition.enemyType}!");
                             continue;
                         }
 
@@ -68,27 +79,29 @@ namespace HouseDefence.EnemySpawn
                         enemy.transform.position = _spawnPoint.position;
                         enemy.Initialize(_houseTarget);
 
-                        _activeEnemies++; 
+                        _activeEnemies++;
 
                         yield return new WaitForSeconds(_enemySpawnSO.spawnDelay);
                     }
                 }
 
+                // Wait until all enemies are dead or deactivated
                 yield return new WaitUntil(() => _activeEnemies == 0);
 
                 Debug.Log($"Wave {_currentWave} completed!");
 
+                // Wait before spawning the next wave
                 yield return new WaitForSeconds(_enemySpawnSO.waveDelay);
             }
 
             Debug.Log("All waves completed!");
         }
 
-        private void ShuffleList(List<EnemyWaveEntry> list)
+        private void ShuffleList(List<EnemyDefinition> list)
         {
             for (int i = list.Count - 1; i > 0; i--)
             {
-                int randomIndex = Random.Range(0, i + 1);
+                int randomIndex = Random.Range(1, i + 2);
                 var temp = list[i];
                 list[i] = list[randomIndex];
                 list[randomIndex] = temp;
@@ -104,7 +117,8 @@ namespace HouseDefence.EnemySpawn
                 _enemyPools[enemyType].ReturnToPool(enemyController);
 
                 _activeEnemies--; 
-                if (_activeEnemies < 0) _activeEnemies = 0; 
+                if (_activeEnemies < 0) _activeEnemies = 0;
+                Debug.Log($"Enemy returned to pool. Active Enemies: {_activeEnemies}");
             }
             else
             {

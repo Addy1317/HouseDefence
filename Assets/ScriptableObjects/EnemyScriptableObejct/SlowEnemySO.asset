@@ -16,6 +16,6 @@ MonoBehaviour:
   enemyType: 1
   maxHealth: 100
   moveSpeed: 2
-  attackInterval: 0
+  attackInterval: 2
   damageToHouse: 1
-  goldReward: 5
+  goldReward: 3

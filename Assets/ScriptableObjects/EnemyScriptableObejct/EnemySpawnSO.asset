@@ -13,28 +13,27 @@ MonoBehaviour:
   m_Name: EnemySpawnSO
   m_EditorClassIdentifier: 
   spawnDelay: 5
-  waveDelay: 0
-  enemyDefinitions:
-  - enemyType: 0
-    enemyPrefab: {fileID: 578861405773373795, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
-  - enemyType: 1
-    enemyPrefab: {fileID: 5505866817948683002, guid: c1b71e309df286d42bfbc1b76af29650, type: 3}
+  waveDelay: 2
+  poolSize: 5
   waveConfigurations:
   - waveName: Wave - 1
-    enemyWaveEntries:
-    - enemyTypeInWave: 0
-      enemyCountInWave: 5
-    - enemyTypeInWave: 0
-      enemyCountInWave: 5
+    totalEnemies: 10
+    enemyDefinitions:
+    - enemyType: 0
+      enemyPrefab: {fileID: 578861405773373795, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
+    - enemyType: 1
+      enemyPrefab: {fileID: 5505866817948683002, guid: c1b71e309df286d42bfbc1b76af29650, type: 3}
   - waveName: Wave - 2
-    enemyWaveEntries:
-    - enemyTypeInWave: 0
-      enemyCountInWave: 7
-    - enemyTypeInWave: 0
-      enemyCountInWave: 7
+    totalEnemies: 15
+    enemyDefinitions:
+    - enemyType: 0
+      enemyPrefab: {fileID: 578861405773373795, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
+    - enemyType: 1
+      enemyPrefab: {fileID: 5505866817948683002, guid: c1b71e309df286d42bfbc1b76af29650, type: 3}
   - waveName: Wave - 3
-    enemyWaveEntries:
-    - enemyTypeInWave: 0
-      enemyCountInWave: 9
-    - enemyTypeInWave: 0
-      enemyCountInWave: 9
+    totalEnemies: 20
+    enemyDefinitions:
+    - enemyType: 0
+      enemyPrefab: {fileID: 578861405773373795, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
+    - enemyType: 1
+      enemyPrefab: {fileID: 5505866817948683002, guid: c1b71e309df286d42bfbc1b76af29650, type: 3}

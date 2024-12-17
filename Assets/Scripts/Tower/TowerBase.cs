@@ -1,5 +1,5 @@
 using HouseDefence.Bullet;
-using HouseDefence.ZombieEnemy;
+using HouseDefence.Enemy;
 using UnityEngine;
 using HouseDefence.Services;
 
