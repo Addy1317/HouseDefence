@@ -29,14 +29,14 @@ namespace HouseDefence.Manager
     {
         [Header("Pause Menu UI")]
         [SerializeField] GameObject _pauseMenuUI;
+
         [Header("PauseButton")]
         [SerializeField] private Button _pauseButton;
 
         [Header("GameOver Menu UI")]
         [SerializeField] private GameObject _gameOverMenuUI;
 
-        private bool isPaused = false;
-        private int totalKills = 0;
+        private bool _isPaused = false;
 
         private void OnEnable()
         {
@@ -67,9 +67,9 @@ namespace HouseDefence.Manager
             TogglePause();
         }
 
-        public void TogglePause()
+        internal void TogglePause()
         {
-            if (isPaused)
+            if (_isPaused)
             {
                 ResumeGame();
             }
@@ -79,23 +79,23 @@ namespace HouseDefence.Manager
             }
         }
 
-        public void PauseGame()
+        internal void PauseGame()
         {
             Time.timeScale = 0f;
-            isPaused = true;
+            _isPaused = true;
             Debug.Log("Game Paused");
         }
 
-        public void ResumeGame()
+        internal void ResumeGame()
         {
             Time.timeScale = 1f;
-            isPaused = false;
+            _isPaused = false;
             Debug.Log("Game Resumed");
         }
 
-        public bool IsGamePaused()
+        internal bool IsGamePaused()
         {
-            return isPaused;
+            return _isPaused;
         }
 
         #endregion

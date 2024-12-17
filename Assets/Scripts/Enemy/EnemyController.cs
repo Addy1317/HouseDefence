@@ -15,24 +15,11 @@ namespace HouseDefence.Enemy
 {
     public class EnemyController : EnemyBase
     {
+        [Header("Components Reference")]
         [SerializeField] private NavMeshAgent _navMeshAgent;
         [SerializeField] private Slider _healthBar;
 
         private Transform _houseTarget;
-
-        public void Initialize(Transform houseTarget)
-        {
-            Debug.Log("Enemy initialized and activated.");
-            _houseTarget = houseTarget;
-            if (_navMeshAgent != null)
-            {
-                _navMeshAgent.enabled = true;
-                _navMeshAgent.SetDestination(_houseTarget.position);
-            }
-
-            ResetHealth();
-            gameObject.SetActive(true);
-        }
 
         protected override void Start()
         {
@@ -49,6 +36,21 @@ namespace HouseDefence.Enemy
             {
                 transform.position = Vector3.MoveTowards(transform.position, _houseTarget.position, 2f * Time.deltaTime);
             }
+        }
+
+        #region Enemy Extended Methods
+        public void Initialize(Transform houseTarget)
+        {
+            Debug.Log("Enemy initialized and activated.");
+            _houseTarget = houseTarget;
+            if (_navMeshAgent != null)
+            {
+                _navMeshAgent.enabled = true;
+                _navMeshAgent.SetDestination(_houseTarget.position);
+            }
+
+            ResetHealth();
+            gameObject.SetActive(true);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -76,5 +78,6 @@ namespace HouseDefence.Enemy
         {
             _healthBar.value = EnemyCurrentHealth / EnemySO.maxHealth;
         }
+        #endregion
     }
 }

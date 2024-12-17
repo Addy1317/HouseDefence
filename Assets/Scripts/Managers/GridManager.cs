@@ -10,6 +10,7 @@ namespace HouseDefence.Grid
 {
     public class GridManager : MonoBehaviour
     {
+        [Header("Components Reference")]
         [SerializeField] private GridController _gridController;
         [SerializeField] private Material _invalidCellMaterial;
 
@@ -17,18 +18,18 @@ namespace HouseDefence.Grid
        
         private void Start()
         {
-            int rows = Mathf.FloorToInt((_gridController._planeHeight - 2 * _gridController._gridMarginY) / _gridController._gridCellSize);
-            int cols = Mathf.FloorToInt((_gridController._planeWidth - 2 * _gridController._gridMarginX) / _gridController._gridCellSize);
+            int rows = Mathf.FloorToInt((_gridController.planeHeight - 2 * _gridController.gridMarginY) / _gridController.gridCellSize);
+            int cols = Mathf.FloorToInt((_gridController.planeWidth - 2 * _gridController.gridMarginX) / _gridController.gridCellSize);
 
             _placedTowers = new TowerBase[cols, rows]; 
         }
 
         #region Tower Management
-        public void PlaceTowerAtCell(GameObject towerPrefab)
+        internal void PlaceTowerAtCell(GameObject towerPrefab)
         {
             Vector3 selectedPosition = _gridController.GetSelectedCellPosition();
-            int x = Mathf.FloorToInt(selectedPosition.x / _gridController._gridCellSize);
-            int z = Mathf.FloorToInt(selectedPosition.z / _gridController._gridCellSize);
+            int x = Mathf.FloorToInt(selectedPosition.x / _gridController.gridCellSize);
+            int z = Mathf.FloorToInt(selectedPosition.z / _gridController.gridCellSize);
 
             if (_placedTowers[x, z] == null) 
             {
@@ -39,16 +40,16 @@ namespace HouseDefence.Grid
             }
             else
             {
-                _gridController._gridCells[x, z].GetComponent<Renderer>().material = _invalidCellMaterial;
+                _gridController.gridCells[x, z].GetComponent<Renderer>().material = _invalidCellMaterial;
                 Debug.LogError("Cannot place tower here. Cell is occupied.");
             }
         }
 
-        public void RemoveTowerAtCell()
+        internal void RemoveTowerAtCell()
         {
             Vector3 selectedPosition = _gridController.GetSelectedCellPosition();
-            int x = Mathf.FloorToInt(selectedPosition.x / _gridController._gridCellSize);
-            int z = Mathf.FloorToInt(selectedPosition.z / _gridController._gridCellSize);
+            int x = Mathf.FloorToInt(selectedPosition.x / _gridController.gridCellSize);
+            int z = Mathf.FloorToInt(selectedPosition.z / _gridController.gridCellSize);
 
             if (_placedTowers[x, z] != null) 
             {
@@ -63,10 +64,10 @@ namespace HouseDefence.Grid
             }
         }
 
-        public bool IsCellOccupied(Vector3 cellPosition)
+        internal bool IsCellOccupied(Vector3 cellPosition)
         {
-            int x = Mathf.FloorToInt(cellPosition.x / _gridController._gridCellSize);
-            int z = Mathf.FloorToInt(cellPosition.z / _gridController._gridCellSize);
+            int x = Mathf.FloorToInt(cellPosition.x / _gridController.gridCellSize);
+            int z = Mathf.FloorToInt(cellPosition.z / _gridController.gridCellSize);
             return _placedTowers[x, z] != null;
         }
         #endregion

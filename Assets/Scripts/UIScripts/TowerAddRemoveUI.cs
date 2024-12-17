@@ -13,25 +13,26 @@ namespace HouseDefence.UI
 {
     public class TowerAddRemoveUI : MonoBehaviour
     {
-        [SerializeField] private GameObject _towerSelectionUI;
-        [SerializeField] private Button _addTowerPrefab;
-        [SerializeField] private Button _removeTowerPrefab;
+        [Header("Tower UI Attributes")]
+        [SerializeField] private Button _addTowerButton;
+        [SerializeField] private Button _removeTowerButton;
         [SerializeField] private TowerBase _towerPrefabToAdd;
 
         public object GameServie { get; private set; }
 
         private void OnEnable()
         {
-            _addTowerPrefab.onClick.AddListener(AddTowerOnGrid);
-            _removeTowerPrefab.onClick.AddListener(RemoveTowerFromGrid);
+            _addTowerButton.onClick.AddListener(AddTowerOnGrid);
+            _removeTowerButton.onClick.AddListener(RemoveTowerFromGrid);
         }
 
         private void OnDisable()
         {
-            _addTowerPrefab.onClick.RemoveListener(AddTowerOnGrid);
-            _removeTowerPrefab.onClick.RemoveListener(RemoveTowerFromGrid);
+            _addTowerButton.onClick.RemoveListener(AddTowerOnGrid);
+            _removeTowerButton.onClick.RemoveListener(RemoveTowerFromGrid);
         }
 
+        #region Tower Add Remove Methods
         private void AddTowerOnGrid()
         {
             if (_towerPrefabToAdd != null)
@@ -49,10 +50,11 @@ namespace HouseDefence.UI
             GameService.Instance.gridManager.RemoveTowerAtCell();
         }
 
-        public void SetTowerPrefab(TowerBase towerPrefab)
+        internal void SetTowerPrefab(TowerBase towerPrefab)
         {
             _towerPrefabToAdd = towerPrefab;
         }
+        #endregion
     }
 }
 

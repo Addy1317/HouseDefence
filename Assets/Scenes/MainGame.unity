@@ -369,15 +369,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.8377491, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.5
 --- !u!222 &42595812
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -787,11 +787,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb5cb0f8a8d23e459a3b04a78f4dd9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _planeWidth: 10
-  _planeHeight: 10
-  _gridCellSize: 1
-  _gridMarginX: 1
-  _gridMarginY: 2
+  planeWidth: 10
+  planeHeight: 10
+  gridCellSize: 1
+  gridMarginX: 0.5
+  gridMarginY: 2
   _defaultCellMaterial: {fileID: 2100000, guid: b546c559698b75c4c9f6bffb748560a1, type: 2}
   _highlightedCellMaterial: {fileID: 2100000, guid: 796692b49b1a8554f929becbca242489, type: 2}
 --- !u!1 &214246843
@@ -1058,9 +1058,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defcb5ce2273dd04bb1ba52d6bd334f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerSelectionUI: {fileID: 253390681}
-  _addTowerPrefab: {fileID: 1972732201}
-  _removeTowerPrefab: {fileID: 877083351}
+  _addTowerButton: {fileID: 1972732201}
+  _removeTowerButton: {fileID: 877083351}
   _towerPrefabToAdd: {fileID: 1775060480950759379, guid: 912e7195423190042ab3d4913cfbb5c6, type: 3}
 --- !u!1 &244412071
 GameObject:
@@ -3270,8 +3269,8 @@ GameObject:
   - component: {fileID: 864798025}
   - component: {fileID: 864798024}
   - component: {fileID: 864798023}
-  - component: {fileID: 864798026}
   - component: {fileID: 864798027}
+  - component: {fileID: 864798026}
   m_Layer: 0
   m_Name: House
   m_TagString: House
@@ -5016,9 +5015,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061b67f411420b146a6f3844912ac8a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSettings: {fileID: 11400000, guid: 1ff55ac579d7298449ce6c5f5c25d683, type: 2}
-  backgroundVolumeSlider: {fileID: 9163254908043504759}
-  sfxVolumeSlider: {fileID: 5253935223019366147}
+  _audioSettings: {fileID: 11400000, guid: 1ff55ac579d7298449ce6c5f5c25d683, type: 2}
+  _backgroundVolumeSlider: {fileID: 9163254908043504759}
+  _sfxVolumeSlider: {fileID: 5253935223019366147}
 --- !u!1 &1335952844
 GameObject:
   m_ObjectHideFlags: 0

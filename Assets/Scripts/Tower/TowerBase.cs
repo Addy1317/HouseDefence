@@ -13,13 +13,15 @@ namespace HouseDefence.Tower
 {
     public abstract class TowerBase : MonoBehaviour
     {
+        [Header("Tower Attributes")]
         [SerializeField] internal TowerSO towerSO;
-        [SerializeField] private Transform towerHead;
+        [SerializeField] private Transform _towerHead;
+
+        [SerializeField] private GameObject bulletPrefab;
         public TowerSO TowerSO => towerSO;
         private float towerCurrentHealth;
         public float TowerCurrentHealth => towerCurrentHealth;
 
-        [SerializeField] private GameObject bulletPrefab; 
         private GenericObjectPool<BulletController> bulletPool;
 
         private float attackCooldown;
@@ -52,6 +54,7 @@ namespace HouseDefence.Tower
             }
         }
 
+        #region TowerBase Methods
         public void TowerTakeDamage(float damage)
         {
             towerCurrentHealth -= damage;
@@ -94,15 +97,11 @@ namespace HouseDefence.Tower
         private void Shoot(EnemyController targetEnemy)
         {
             BulletController bullet = GameService.Instance.bulletManager.GetBullet(); 
-            bullet.transform.position = towerHead.position; 
+            bullet.transform.position = _towerHead.position; 
             bullet.Initialize(targetEnemy, towerSO.damageToEnemy);  
             lastAttackTime = Time.time;  
         }
 
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, towerSO.towerRange);
-        }
+        #endregion
     }
 }

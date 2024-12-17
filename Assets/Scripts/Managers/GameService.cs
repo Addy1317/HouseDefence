@@ -30,6 +30,7 @@ namespace HouseDefence.Services
 {
     public class GameService : GenericMonoSingleton<GameService>
     {
+        [Header("Service")]
         [SerializeField] internal GameManager gameManager;
         [SerializeField] internal AudioManager audioManager;
         [SerializeField] internal BulletManager bulletManager;

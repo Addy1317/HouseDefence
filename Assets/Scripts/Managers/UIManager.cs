@@ -44,8 +44,8 @@ namespace HouseDefence.UI
         private void OnDisable()
         {
             GameService.Instance.eventManager.OnEnemyDeathEvent.RemoveListeners(OnEnemyDeath);
-
         }
+
         #region House UI Methods
         internal void UpdateHealthbarUI(int currentHealth, int maxHealth, float healthPercentage)
         {
@@ -94,14 +94,18 @@ namespace HouseDefence.UI
         }
         #endregion
 
+        #region TowerSelectionUI Methods
         internal void ActivateTowerSelectionPanel()
         {
             _towerSelectionPanel.SetActive(true);
         }
+        #endregion
 
+        #region WaveCount Methods
         internal void UpdateWaveCount(int currentWave)
         {
             _wavesText.text = $"Wave: {currentWave}";
         }
+        #endregion
     }
 }

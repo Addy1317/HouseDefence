@@ -13,6 +13,7 @@ namespace HouseDefence.Enemy
     [CreateAssetMenu(fileName = "EnemySO", menuName = "Game/EnemyData", order = 0)]
     public class EnemySO : ScriptableObject
     {
+        [Header("EnemySo Attributes")]
         [SerializeField] internal string enemyName;
         [SerializeField] internal EnemyType enemyType;
         [SerializeField] internal float maxHealth;

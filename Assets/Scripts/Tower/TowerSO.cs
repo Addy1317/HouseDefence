@@ -16,6 +16,7 @@ namespace HouseDefence.Tower
     [CreateAssetMenu(fileName = "TowerSO", menuName = "Game/TowerData", order = 0)]
     public class TowerSO : ScriptableObject
     {
+        [Header("Tower Attributes")]
         [SerializeField] internal string towerName;
         [SerializeField] internal TowerType towerType;
         [SerializeField] internal float towerMaxHealth;

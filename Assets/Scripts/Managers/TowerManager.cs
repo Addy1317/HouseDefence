@@ -15,16 +15,18 @@ namespace HouseDefence.Tower
 
     public class TowerManager : MonoBehaviour
     {
+        [Header("Tower Data")]
         [SerializeField] internal TowerInfo[] towerInfos; 
-        private TowerInfo selectedTowerInfo;
+        private TowerInfo _selectedTowerInfo;
 
-        public void SelectTower(TowerType towerType)
+        #region Tower Methods
+        internal void SelectTower(TowerType towerType)
         {
-            selectedTowerInfo = GetTowerInfo(towerType);
+            _selectedTowerInfo = GetTowerInfo(towerType);
 
-            if (selectedTowerInfo.towerPrefab != null)
+            if (_selectedTowerInfo.towerPrefab != null)
             {
-                Debug.Log($"Selected tower: {selectedTowerInfo.towerPrefab.name}");
+                Debug.Log($"Selected tower: {_selectedTowerInfo.towerPrefab.name}");
             }
             else
             {
@@ -32,7 +34,7 @@ namespace HouseDefence.Tower
             }
         }
 
-        public GameObject CreateRandomTower(Vector3 position)
+        internal GameObject CreateRandomTower(Vector3 position)
         {
             if (towerInfos.Length == 0)
             {
@@ -60,20 +62,20 @@ namespace HouseDefence.Tower
             return towerObject;
         }
 
-        public void PlaceTower(Vector3 position)
+        internal void PlaceTower(Vector3 position)
         {
-            if (selectedTowerInfo.towerPrefab != null)
+            if (_selectedTowerInfo.towerPrefab != null)
             {
-                GameObject towerObject = Instantiate(selectedTowerInfo.towerPrefab, position, Quaternion.identity);
+                GameObject towerObject = Instantiate(_selectedTowerInfo.towerPrefab, position, Quaternion.identity);
 
                 TowerController towerController = towerObject.GetComponent<TowerController>();
 
                 if (towerController != null)
                 {
-                    towerController.towerSO = selectedTowerInfo.towerPrefab.GetComponent<TowerSO>(); 
+                    towerController.towerSO = _selectedTowerInfo.towerPrefab.GetComponent<TowerSO>(); 
                 }
 
-                Debug.Log($"Placed tower: {selectedTowerInfo.towerPrefab.name} at {position}");
+                Debug.Log($"Placed tower: {_selectedTowerInfo.towerPrefab.name} at {position}");
             }
             else
             {
@@ -81,7 +83,7 @@ namespace HouseDefence.Tower
             }
         }
 
-        private TowerInfo GetTowerInfo(TowerType towerType)
+        internal TowerInfo GetTowerInfo(TowerType towerType)
         {
             foreach (var towerInfo in towerInfos)
             {
@@ -94,5 +96,7 @@ namespace HouseDefence.Tower
             Debug.LogError($"Tower type {towerType} not found.");
             return default;
         }
+
+        #endregion
     }
 }

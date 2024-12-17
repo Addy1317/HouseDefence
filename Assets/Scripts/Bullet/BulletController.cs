@@ -13,19 +13,21 @@ namespace HouseDefence.Bullet
 {
     public class BulletController : MonoBehaviour
     {
+        [Header("Bullets Attributes")]
         private EnemyController _targetEnemy;
         private float _damage;
-        private float _speed = 5f;  
-
-        internal void Initialize(EnemyController enemy, float bulletDamage)
-        {
-            _targetEnemy = enemy;
-            _damage = bulletDamage;
-        }
+        private float _speed = 5f;
 
         private void Update()
         {
             BulletBehaviour();
+        }
+
+        #region Bullets Methods
+        internal void Initialize(EnemyController enemy, float bulletDamage)
+        {
+            _targetEnemy = enemy;
+            _damage = bulletDamage;
         }
 
         private void BulletBehaviour()
@@ -51,5 +53,7 @@ namespace HouseDefence.Bullet
         {
             GameService.Instance.bulletManager.ReturnToPool(this);
         }
+
+        #endregion
     }
 }

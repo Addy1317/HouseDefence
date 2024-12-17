@@ -19,11 +19,13 @@ namespace HouseDefence.House
             _houseCurrentHealth = _houesMaxHealth;
             UpdateHouseUI();
         }
+
         private void Update()
         {
 
         }
 
+        #region House Methods
         public void TakeDamage(int damage)
         {
             _houseCurrentHealth -= damage;
@@ -48,5 +50,6 @@ namespace HouseDefence.House
             Debug.Log("House Destroyed");
             GameService.Instance.eventManager.OnHouseDeathEvent.InvokeEvent();
         }
+        #endregion
     }
 }

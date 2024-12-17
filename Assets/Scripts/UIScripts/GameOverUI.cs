@@ -24,7 +24,6 @@ namespace HouseDefence.UI
         [Header("Kills Count")]
         [SerializeField] private TextMeshProUGUI _totalKillsCountText;
        
-
         private void OnEnable()
         {
             _replayButton.onClick.AddListener(OnRelayButton);

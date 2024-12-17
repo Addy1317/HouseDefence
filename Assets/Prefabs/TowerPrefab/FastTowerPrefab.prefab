@@ -41,6 +41,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3887088832372433814}
     - target: {fileID: 8465667473893669328, guid: 9ea1696b8730b6243af418284727e4ce, type: 3}
+      propertyPath: _towerHead
+      value: 
+      objectReference: {fileID: 3887088832372433814}
+    - target: {fileID: 8465667473893669328, guid: 9ea1696b8730b6243af418284727e4ce, type: 3}
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 407834132551818107, guid: a89bf8daa5c22a2409f2db30da5a10ac, type: 3}

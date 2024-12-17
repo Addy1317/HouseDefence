@@ -12,9 +12,9 @@ namespace HouseDefence.Audio
     public class AudioManager : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private AudioSO audioSettings;
-        [SerializeField] private Slider backgroundVolumeSlider;
-        [SerializeField] private Slider sfxVolumeSlider;
+        [SerializeField] private AudioSO _audioSettings;
+        [SerializeField] private Slider _backgroundVolumeSlider;
+        [SerializeField] private Slider _sfxVolumeSlider;
 
         private AudioSource backgroundMusicSource;
 
@@ -23,44 +23,47 @@ namespace HouseDefence.Audio
             DontDestroyOnLoad(this.gameObject);
 
             backgroundMusicSource = gameObject.AddComponent<AudioSource>();
-            backgroundMusicSource.clip = audioSettings.backgroundMusicClip;
+            backgroundMusicSource.clip = _audioSettings.backgroundMusicClip;
             backgroundMusicSource.loop = true;
-            backgroundMusicSource.volume = audioSettings.backgroundMusicVolume;
+            backgroundMusicSource.volume = _audioSettings.backgroundMusicVolume;
             backgroundMusicSource.Play();
 
-            if (backgroundVolumeSlider != null)
+            if (_backgroundVolumeSlider != null)
             {
-                backgroundVolumeSlider.value = audioSettings.backgroundMusicVolume;
-                backgroundVolumeSlider.onValueChanged.AddListener(UpdateBackgroundVolume);
+                _backgroundVolumeSlider.value = _audioSettings.backgroundMusicVolume;
+                _backgroundVolumeSlider.onValueChanged.AddListener(UpdateBackgroundVolume);
             }
 
-            if (sfxVolumeSlider != null)
+            if (_sfxVolumeSlider != null)
             {
-                sfxVolumeSlider.value = audioSettings.sfxVolume;
-                sfxVolumeSlider.onValueChanged.AddListener(UpdateSFXVolume);
+                _sfxVolumeSlider.value = _audioSettings.sfxVolume;
+                _sfxVolumeSlider.onValueChanged.AddListener(UpdateSFXVolume);
             }
         }
 
+        #region Audio Methods
         private void UpdateBackgroundVolume(float volume)
         {
-            audioSettings.backgroundMusicVolume = volume;
+            _audioSettings.backgroundMusicVolume = volume;
             backgroundMusicSource.volume = volume;
             Debug.Log($"Background Music Volume set to: {volume}");
         }
 
         private void UpdateSFXVolume(float volume)
         {
-            audioSettings.sfxVolume = volume;
+            _audioSettings.sfxVolume = volume;
             Debug.Log($"SFX Volume set to: {volume}");
         }
 
         internal void PlaySFX(SFXType sfxType)
         {
-            AudioClip clip = audioSettings.GetSFXClip(sfxType);
+            AudioClip clip = _audioSettings.GetSFXClip(sfxType);
             if (clip != null)
             {
-                AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, audioSettings.sfxVolume);
+                AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, _audioSettings.sfxVolume);
             }
         }
+
+        #endregion
     }
 }

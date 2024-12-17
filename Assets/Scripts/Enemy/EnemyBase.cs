@@ -12,6 +12,7 @@ namespace HouseDefence.Enemy
 {
     public abstract class EnemyBase : MonoBehaviour
     {
+        [Header("EnemySO Reference")]
         [SerializeField] private EnemySO enemySO; 
         public EnemySO EnemySO => enemySO; 
         public float EnemyCurrentHealth => currentHealth; 
@@ -22,7 +23,8 @@ namespace HouseDefence.Enemy
             currentHealth = enemySO.maxHealth; 
         }
 
-        public virtual void EnemyTakeDamage(float damage)
+        #region EnemyBaseMethods
+        internal virtual void EnemyTakeDamage(float damage)
         {
             currentHealth -= damage;
             UpdateHealthBar();
@@ -32,7 +34,7 @@ namespace HouseDefence.Enemy
             }
         }
 
-        public virtual void ResetEnemyHealth() 
+        internal virtual void ResetEnemyHealth() 
         {
             currentHealth = enemySO.maxHealth;
         }
@@ -54,7 +56,8 @@ namespace HouseDefence.Enemy
             }
         }
 
-        protected abstract void UpdateHealthBar(); 
+        protected abstract void UpdateHealthBar();
+        #endregion
     }
 }
 

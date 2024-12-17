@@ -10,6 +10,7 @@ namespace HouseDefence.Bullet
 {
     public class BulletManager : MonoBehaviour
     {
+        [Header("Components Reference")]
         [SerializeField] private BulletController _bulletPrefab; 
         [SerializeField] private int _initialPoolSize = 50; 
         private GenericObjectPool<BulletController> _bulletPool;
@@ -19,12 +20,12 @@ namespace HouseDefence.Bullet
             _bulletPool = new GenericObjectPool<BulletController>(_bulletPrefab, _initialPoolSize, transform);
         }
 
-        public BulletController GetBullet()
+        internal BulletController GetBullet()
         {
             return _bulletPool.Get();
         }
 
-        public void ReturnToPool(BulletController bullet)
+       internal void ReturnToPool(BulletController bullet)
         {
             _bulletPool.ReturnToPool(bullet);
         }

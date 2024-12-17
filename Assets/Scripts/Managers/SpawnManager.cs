@@ -29,6 +29,7 @@ namespace HouseDefence.EnemySpawn
             StartCoroutine(SpawnWavesRoutine());
         }
 
+        #region EnemySpawn Methods
         private void InitializePools()
         {
             {
@@ -108,7 +109,7 @@ namespace HouseDefence.EnemySpawn
             }
         }
 
-        public void ReturnEnemyToPool(EnemyController enemyController, EnemyType enemyType)
+        internal void ReturnEnemyToPool(EnemyController enemyController, EnemyType enemyType)
         {
             if (_enemyPools.ContainsKey(enemyType))
             {
@@ -125,5 +126,7 @@ namespace HouseDefence.EnemySpawn
                 Debug.LogWarning($"Enemy type {enemyType} not found in pool.");
             }
         }
+
+        #endregion
     }
 } 

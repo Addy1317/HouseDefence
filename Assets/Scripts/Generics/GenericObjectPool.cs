@@ -25,7 +25,7 @@ namespace HouseDefence
         private T _prefab;
         private Transform _parent;
 
-        public GenericObjectPool(T prefab, int initialSize, Transform parent = null)
+        internal GenericObjectPool(T prefab, int initialSize, Transform parent = null)
         {
             _prefab = prefab;
             _parent = parent;
@@ -44,7 +44,7 @@ namespace HouseDefence
             _pool.Enqueue(obj);
         }
 
-        public T Get()
+        internal T Get()
         {
             if (_pool.Count == 0)
             {
@@ -56,7 +56,7 @@ namespace HouseDefence
             return obj;
         }
 
-        public void ReturnToPool(T obj)
+        internal void ReturnToPool(T obj)
         {
             obj.gameObject.SetActive(false);
             _pool.Enqueue(obj);
