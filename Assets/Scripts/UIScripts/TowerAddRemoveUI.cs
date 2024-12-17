@@ -1,20 +1,20 @@
+
 using HouseDefence.Grid;
 using HouseDefence.Services;
 using HouseDefence.Tower;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace HouseDefence.UI
 {
-    public class TowerSelectionUI : MonoBehaviour
+    public class TowerAddRemoveUI : MonoBehaviour
     {
         [SerializeField] private GameObject _towerSelectionUI;
         [SerializeField] private Button _addTowerPrefab;
         [SerializeField] private Button _removeTowerPrefab;
+        [SerializeField] private TowerBase _towerPrefabToAdd;
 
-        private GridManager _gridManager;
+        public object GameServie { get; private set; }
 
         private void OnEnable()
         {
@@ -28,27 +28,26 @@ namespace HouseDefence.UI
             _removeTowerPrefab.onClick.RemoveListener(RemoveTowerFromGrid);
         }
 
-        private void Start()
-        {
-            _gridManager = GameService.Instance.gridManager;  // Assuming GameService gives you the GridManager instance
-        }
-
         private void AddTowerOnGrid()
         {
-            if (_gridManager != null)
+            if (_towerPrefabToAdd != null)
             {
-                Vector3 towerPlacementPosition = _gridManager.GetSelectedCellPosition();  // Assuming you have this method to get the selected position on the grid
-                _gridManager.PlaceTowerOnGrid(towerPlacementPosition);
+                GameService.Instance.gridManager.PlaceTowerAtCell(_towerPrefabToAdd.gameObject);
             }
             else
             {
-                Debug.LogError("GridManager not found!");
+                Debug.LogError("No tower selected for placement!");
             }
         }
 
         private void RemoveTowerFromGrid()
         {
-            
+            GameService.Instance.gridManager.RemoveTowerAtCell();
+        }
+
+        public void SetTowerPrefab(TowerBase towerPrefab)
+        {
+            _towerPrefabToAdd = towerPrefab;
         }
     }
 }

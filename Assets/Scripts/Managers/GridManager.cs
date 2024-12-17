@@ -7,180 +7,68 @@ namespace HouseDefence.Grid
 {
     public class GridManager : MonoBehaviour
     {
-        [SerializeField] private float _planeWidth = 10f;  
-        [SerializeField] private float _planeHeight = 10f; 
-        [SerializeField] private float _gridCellSize = 1f; 
+        [SerializeField] private GridController _gridController;
+        [SerializeField] private Material _invalidCellMaterial;
 
-        [SerializeField] private float _gridMarginX = 3f; 
-        [SerializeField] private float _gridMarginY = 3f; 
-
-        [Header("Highlight Settings")]
-        [SerializeField] private Material _defaultCellMaterial;
-        [SerializeField] private Material _highlightedCellMaterial;
-
-        private GameObject[,] _gridCells;
-        private GameObject _selectedCell;
         private TowerBase[,] _placedTowers;
-        private Vector3 _selectedCellPosition;
-
-        private Dictionary<Vector3, GameObject> _towerPositions = new Dictionary<Vector3, GameObject>();
-
+       
         private void Start()
         {
-            InitializeGrid();
+            int rows = Mathf.FloorToInt((_gridController._planeHeight - 2 * _gridController._gridMarginY) / _gridController._gridCellSize);
+            int cols = Mathf.FloorToInt((_gridController._planeWidth - 2 * _gridController._gridMarginX) / _gridController._gridCellSize);
+
+            _placedTowers = new TowerBase[cols, rows]; 
         }
 
-        private void Update()
+        #region Tower Management
+        public void PlaceTowerAtCell(GameObject towerPrefab)
         {
-            HandleCellSelection();
-        }
+            Vector3 selectedPosition = _gridController.GetSelectedCellPosition();
+            int x = Mathf.FloorToInt(selectedPosition.x / _gridController._gridCellSize);
+            int z = Mathf.FloorToInt(selectedPosition.z / _gridController._gridCellSize);
 
-        private void InitializeGrid()
-        {
-            int rows = Mathf.FloorToInt((_planeHeight - 2 * _gridMarginY) / _gridCellSize);
-            int cols = Mathf.FloorToInt((_planeWidth - 2 * _gridMarginX) / _gridCellSize);
-
-            _gridCells = new GameObject[cols, rows];
-            float startX = transform.position.x - (_planeWidth - 2 * _gridMarginX) / 2;
-            float startZ = transform.position.z - (_planeHeight - 2 * _gridMarginY) / 2;
-
-            for (int x = 0; x < cols; x++)
+            if (_placedTowers[x, z] == null) // Check if the cell is empty
             {
-                for (int z = 0; z < rows; z++)
-                {
-                    Vector3 cellPosition = new Vector3(
-                        startX + x * _gridCellSize + _gridCellSize / 2,
-                        transform.position.y,
-                        startZ + z * _gridCellSize + _gridCellSize / 2
-                    );
+                // Instantiate the tower at the selected cell
+                GameObject tower = Instantiate(towerPrefab, selectedPosition, Quaternion.identity);
+                _placedTowers[x, z] = tower.GetComponent<TowerBase>();
 
-                    GameObject cell = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    cell.transform.position = cellPosition;
-                    cell.transform.localScale = new Vector3(_gridCellSize, 0.1f, _gridCellSize);
-                    cell.GetComponent<Renderer>().material = _defaultCellMaterial;
-                    cell.transform.parent = transform;
-
-                    _gridCells[x, z] = cell;
-                }
-            }
-        }
-
-        private void HandleCellSelection()
-        {
-            if (Input.GetMouseButtonDown(0)) 
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit))
-                {
-                    GameObject clickedObject = hit.collider.gameObject;
-
-                    if (IsGridCell(clickedObject))
-                    {
-                        HighlightCell(clickedObject);
-                        OpenTowerPlacementUI(clickedObject);
-                    }
-                }
-            }
-        }
-
-        private bool IsGridCell(GameObject obj)
-        {
-            foreach (GameObject cell in _gridCells)
-            {
-                if (cell == obj)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private void HighlightCell(GameObject cell)
-        {
-            if (_selectedCell != null)
-            {
-                _selectedCell.GetComponent<Renderer>().material = _defaultCellMaterial;
-            }
-
-            _selectedCell = cell;
-            _selectedCell.GetComponent<Renderer>().material = _highlightedCellMaterial;
-            _selectedCellPosition = cell.transform.position;
-        }
-        public Vector3 GetSelectedCellPosition()
-        {
-            return _selectedCellPosition;
-        }
-        private void OpenTowerPlacementUI(GameObject cell)
-        {
-            Debug.Log($"Opening Tower Placement UI for {cell.name}");
-            GameService.Instance.uiManager.ActivateTowerSelectionPanel();
-        }
-        // Place tower on the selected cell
-        public void PlaceTowerOnGrid(Vector3 position)
-        {
-            if (GameService.Instance.towerManager != null)
-            {
-                GameService.Instance.towerManager.PlaceTower(position);
+                Debug.Log("Tower placed at: " + selectedPosition);
             }
             else
             {
-                Debug.LogError("TowerManager is not assigned.");
+                // If there's already a tower, show an invalid placement indication
+                _gridController._gridCells[x, z].GetComponent<Renderer>().material = _invalidCellMaterial;
+                Debug.LogError("Cannot place tower here. Cell is occupied.");
             }
         }
 
-        // Remove tower from the selected cell
-        public void RemoveTowerFromCell(GameObject cell)
+        public void RemoveTowerAtCell()
         {
-            Vector3 towerPosition = cell.transform.position;
-            int xIndex = (int)(towerPosition.x / _gridCellSize);
-            int zIndex = (int)(towerPosition.z / _gridCellSize);
+            Vector3 selectedPosition = _gridController.GetSelectedCellPosition();
+            int x = Mathf.FloorToInt(selectedPosition.x / _gridController._gridCellSize);
+            int z = Mathf.FloorToInt(selectedPosition.z / _gridController._gridCellSize);
 
-            if (_placedTowers[xIndex, zIndex] != null)
+            if (_placedTowers[x, z] != null) // Check if there is a tower
             {
-                Destroy(_placedTowers[xIndex, zIndex].gameObject); // Destroy the tower
-                _placedTowers[xIndex, zIndex] = null; // Reset the array entry
+                Destroy(_placedTowers[x, z].gameObject);
+                _placedTowers[x, z] = null;
+
+                Debug.Log("Tower removed from: " + selectedPosition);
+            }
+            else
+            {
+                Debug.LogError("No tower present at this cell.");
             }
         }
 
-        #region Gizmos Methods
-        void OnDrawGizmos()
+        public bool IsCellOccupied(Vector3 cellPosition)
         {
-            if (!Application.isPlaying)
-            {
-                // Draw the entire plane boundary in white
-                Gizmos.color = Color.white;
-                Gizmos.DrawWireCube(transform.position, new Vector3(_planeWidth, 0.1f, _planeHeight));
-
-                // Draw the valid grid placement area in green
-                Gizmos.color = Color.green;
-                Vector3 center = this.transform.position;
-                Vector3 gridSize = new Vector3(_planeWidth - 2 * _gridMarginX, 0.1f, _planeHeight - 2 * _gridMarginY);
-                Gizmos.DrawWireCube(center, gridSize);
-
-                // Draw individual grid cells within the valid placement area
-                Gizmos.color = Color.blue;
-                float startX = center.x - (_planeWidth - 2 * _gridMarginX) / 2;
-                float startZ = center.z - (_planeHeight - 2 * _gridMarginY) / 2;
-
-                int rows = Mathf.FloorToInt((_planeHeight - 2 * _gridMarginY) / _gridCellSize);
-                int cols = Mathf.FloorToInt((_planeWidth - 2 * _gridMarginX) / _gridCellSize);
-
-                for (int x = 0; x <= cols; x++)
-                {
-                    for (int z = 0; z <= rows; z++)
-                    {
-                        Vector3 cellPosition = new Vector3(
-                            startX + x * _gridCellSize + _gridCellSize / 2,
-                            transform.position.y,
-                            startZ + z * _gridCellSize + _gridCellSize / 2
-                        );
-
-                        Gizmos.DrawWireCube(cellPosition, new Vector3(_gridCellSize, 0.1f, _gridCellSize));
-                    }
-                }
-            }
+            int x = Mathf.FloorToInt(cellPosition.x / _gridController._gridCellSize);
+            int z = Mathf.FloorToInt(cellPosition.z / _gridController._gridCellSize);
+            return _placedTowers[x, z] != null;
         }
         #endregion
-
     }
 }
+

@@ -71,8 +71,6 @@ namespace HouseDefence.Tower
             Destroy(gameObject);
         }
 
-
-
         private EnemyController FindEnemyInRange()
         {
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, towerSO.towerRange);
