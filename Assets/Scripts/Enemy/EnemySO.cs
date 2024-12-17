@@ -1,6 +1,11 @@
+#region Summary
+/// <summary>
+/// EnemySO is a ScriptableObject that holds data for enemy characters in the game. It stores attributes such as the enemy's 
+/// name, type, health, movement speed, attack interval, damage to the house, and gold reward. This object is used to define 
+/// the characteristics of different enemy types in a modular and data-driven way.
+/// </summary>
+#endregion
 using HouseDefence.EnemySpawn;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HouseDefence.Enemy

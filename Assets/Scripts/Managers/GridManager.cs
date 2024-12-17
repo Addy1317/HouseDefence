@@ -1,6 +1,9 @@
-using HouseDefence.Services;
+#region Summary
+// GridManager is responsible for managing the game grid where towers are placed in the HouseDefence game.
+// It interacts with the GridController to determine grid size and placement rules for towers. 
+// The class provides functions to place, remove, and check tower placement in a grid-based layout.
+#endregion
 using HouseDefence.Tower;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HouseDefence.Grid
@@ -27,9 +30,8 @@ namespace HouseDefence.Grid
             int x = Mathf.FloorToInt(selectedPosition.x / _gridController._gridCellSize);
             int z = Mathf.FloorToInt(selectedPosition.z / _gridController._gridCellSize);
 
-            if (_placedTowers[x, z] == null) // Check if the cell is empty
+            if (_placedTowers[x, z] == null) 
             {
-                // Instantiate the tower at the selected cell
                 GameObject tower = Instantiate(towerPrefab, selectedPosition, Quaternion.identity);
                 _placedTowers[x, z] = tower.GetComponent<TowerBase>();
 
@@ -37,7 +39,6 @@ namespace HouseDefence.Grid
             }
             else
             {
-                // If there's already a tower, show an invalid placement indication
                 _gridController._gridCells[x, z].GetComponent<Renderer>().material = _invalidCellMaterial;
                 Debug.LogError("Cannot place tower here. Cell is occupied.");
             }
@@ -49,7 +50,7 @@ namespace HouseDefence.Grid
             int x = Mathf.FloorToInt(selectedPosition.x / _gridController._gridCellSize);
             int z = Mathf.FloorToInt(selectedPosition.z / _gridController._gridCellSize);
 
-            if (_placedTowers[x, z] != null) // Check if there is a tower
+            if (_placedTowers[x, z] != null) 
             {
                 Destroy(_placedTowers[x, z].gameObject);
                 _placedTowers[x, z] = null;

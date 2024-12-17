@@ -1,3 +1,8 @@
+#region Summary
+// TowerSO is a ScriptableObject that stores data related to different types of towers in the game.
+// It includes properties such as tower name, type, max health, attack range, attack speed, damage to enemies, and tower cost.
+// This data is used to configure towers dynamically in the game.
+#endregion
 using UnityEngine;
 
 namespace HouseDefence.Tower

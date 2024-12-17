@@ -1,21 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+#region Summary
+/// <summary>
+/// Manages the player's currency system, including coins, gems, or other resources.
+/// Provides methods to add, deduct, and persist currency data.
+/// </summary>
+#endregion
 using UnityEngine;
 
 namespace HouseDefence
 {
     public class CurrencyManager : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
 }

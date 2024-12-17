@@ -1,6 +1,12 @@
-using HouseDefence.Enemy;
+#region Summary
+/// <summary>
+/// EnemySpawnSO is a ScriptableObject that stores global spawn settings and configurations for enemy waves in the game. 
+/// It includes settings such as spawn delays, wave delays, and the number of enemies to spawn in each wave. The class 
+/// also holds a list of wave configurations, where each wave contains various enemy types and their corresponding prefabs. 
+/// It validates enemy definitions and ensures that each wave has the correct configuration for enemy types and counts.
+/// </summary>
+#endregion
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

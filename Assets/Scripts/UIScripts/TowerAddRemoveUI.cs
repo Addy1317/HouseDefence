@@ -1,5 +1,9 @@
-
-using HouseDefence.Grid;
+#region Summary
+// The TowerAddRemoveUI class handles the UI for adding and removing towers from the grid. 
+// It provides functionality for selecting a tower to place on the grid and removing towers from the grid.
+// The UI interacts with GameService and GridManager to place and remove towers accordingly. 
+// The SetTowerPrefab method allows setting a specific tower prefab to be added to the grid.
+#endregion
 using HouseDefence.Services;
 using HouseDefence.Tower;
 using UnityEngine;

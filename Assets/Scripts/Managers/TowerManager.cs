@@ -1,5 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+#region Summary
+// The TowerManager is responsible for managing tower types, selecting towers, and placing them in the game world.
+// It handles both manual tower placement and random tower creation based on available tower types.
+#endregion
 using UnityEngine;
 
 namespace HouseDefence.Tower
@@ -13,13 +15,11 @@ namespace HouseDefence.Tower
 
     public class TowerManager : MonoBehaviour
     {
-        [SerializeField] internal TowerInfo[] towerInfos; // Store different types of towers
+        [SerializeField] internal TowerInfo[] towerInfos; 
         private TowerInfo selectedTowerInfo;
 
-        // Call this method to select a tower (e.g., from a UI button or other interaction)
         public void SelectTower(TowerType towerType)
         {
-            // Find the tower in the towerInfos array based on the selected TowerType
             selectedTowerInfo = GetTowerInfo(towerType);
 
             if (selectedTowerInfo.towerPrefab != null)
@@ -32,7 +32,6 @@ namespace HouseDefence.Tower
             }
         }
 
-        // This method will instantiate a random tower from the available towers
         public GameObject CreateRandomTower(Vector3 position)
         {
             if (towerInfos.Length == 0)
@@ -41,7 +40,6 @@ namespace HouseDefence.Tower
                 return null;
             }
 
-            // Randomly select a tower from the available tower types
             int randomIndex = Random.Range(0, towerInfos.Length);
             TowerInfo towerInfo = towerInfos[randomIndex];
 
@@ -51,33 +49,28 @@ namespace HouseDefence.Tower
                 return null;
             }
 
-            // Instantiate the tower prefab
             GameObject towerObject = Instantiate(towerInfo.towerPrefab, position, Quaternion.identity);
             TowerController towerController = towerObject.GetComponent<TowerController>();
 
             if (towerController != null)
             {
-                // Optionally initialize or configure the tower with the corresponding data
-                towerController.towerSO = towerInfo.towerPrefab.GetComponent<TowerSO>(); // If needed, assign towerSO data.
+                towerController.towerSO = towerInfo.towerPrefab.GetComponent<TowerSO>(); 
             }
 
             return towerObject;
         }
 
-        // Method to place the tower in the game world
         public void PlaceTower(Vector3 position)
         {
             if (selectedTowerInfo.towerPrefab != null)
             {
-                // Instantiate the selected tower prefab at the specified position
                 GameObject towerObject = Instantiate(selectedTowerInfo.towerPrefab, position, Quaternion.identity);
 
                 TowerController towerController = towerObject.GetComponent<TowerController>();
 
                 if (towerController != null)
                 {
-                    // Optionally, initialize or configure the tower with additional data, if needed
-                    towerController.towerSO = selectedTowerInfo.towerPrefab.GetComponent<TowerSO>(); // If you need to use TowerSO data.
+                    towerController.towerSO = selectedTowerInfo.towerPrefab.GetComponent<TowerSO>(); 
                 }
 
                 Debug.Log($"Placed tower: {selectedTowerInfo.towerPrefab.name} at {position}");
@@ -88,7 +81,6 @@ namespace HouseDefence.Tower
             }
         }
 
-        // Fetch TowerInfo for a given tower type
         private TowerInfo GetTowerInfo(TowerType towerType)
         {
             foreach (var towerInfo in towerInfos)

@@ -1,7 +1,11 @@
+#region Summary
+/// <summary>
+/// GridController is responsible for generating and managing a grid-based layout for tower placement.
+/// It handles cell selection, highlights selected cells, and interfaces with the UI for tower placement.
+/// </summary>
+#endregion
 using HouseDefence.Services;
 using HouseDefence.Tower;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HouseDefence.Grid
@@ -123,17 +127,14 @@ namespace HouseDefence.Grid
         {
             if (!Application.isPlaying)
             {
-                // Draw the entire plane boundary in white
                 Gizmos.color = Color.white;
                 Gizmos.DrawWireCube(transform.position, new Vector3(_planeWidth, 0.1f, _planeHeight));
 
-                // Draw the valid grid placement area in green
                 Gizmos.color = Color.green;
                 Vector3 center = this.transform.position;
                 Vector3 gridSize = new Vector3(_planeWidth - 2 * _gridMarginX, 0.1f, _planeHeight - 2 * _gridMarginY);
                 Gizmos.DrawWireCube(center, gridSize);
 
-                // Draw individual grid cells within the valid placement area
                 Gizmos.color = Color.blue;
                 float startX = center.x - (_planeWidth - 2 * _gridMarginX) / 2;
                 float startZ = center.z - (_planeHeight - 2 * _gridMarginY) / 2;

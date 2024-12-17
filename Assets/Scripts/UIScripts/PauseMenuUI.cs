@@ -1,4 +1,7 @@
 #region Summary
+// The PauseMenuUI class manages the pause menu functionality, including showing and hiding the pause menu and settings panel.
+// It handles button clicks for resuming the game, restarting, going to the main menu, opening settings, and quitting the game.
+// The class also allows for closing the settings panel via a dedicated button.
 #endregion
 using UnityEngine;
 using UnityEngine.SceneManagement;

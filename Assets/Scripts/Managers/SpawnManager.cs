@@ -1,3 +1,7 @@
+#region Summary
+// The SpawnManager is responsible for managing the spawning of enemies during the game. 
+// It handles enemy pool management, wave-based enemy spawning, and the return of enemies to the pool after they are defeated.
+#endregion
 using HouseDefence.Enemy;
 using HouseDefence.Services;
 using System.Collections;
@@ -28,7 +32,6 @@ namespace HouseDefence.EnemySpawn
         private void InitializePools()
         {
             {
-                // Initialize pools for each enemy type based on the definitions in the EnemySpawnSO
                 _enemyPools = new Dictionary<EnemyType, GenericObjectPool<EnemyController>>();
 
                 foreach (var waveData in _enemySpawnSO.waveConfigurations)
@@ -59,7 +62,6 @@ namespace HouseDefence.EnemySpawn
 
                 GameService.Instance.uiManager.UpdateWaveCount(_currentWave);
 
-                // Randomize the enemy definitions to spawn from the wave's enemyDefinitions
                 List<EnemyDefinition> randomizedEnemies = new List<EnemyDefinition>(wave.enemyDefinitions);
                 ShuffleList(randomizedEnemies);
 
@@ -85,12 +87,10 @@ namespace HouseDefence.EnemySpawn
                     }
                 }
 
-                // Wait until all enemies are dead or deactivated
                 yield return new WaitUntil(() => _activeEnemies == 0);
 
                 Debug.Log($"Wave {_currentWave} completed!");
 
-                // Wait before spawning the next wave
                 yield return new WaitForSeconds(_enemySpawnSO.waveDelay);
             }
 

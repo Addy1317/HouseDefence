@@ -1,4 +1,7 @@
 #region Summary
+/// <summary>
+/// Manages the Main Menu UI, including navigation between panels and game start functionality.
+/// </summary>
 #endregion
 using UnityEngine;
 using UnityEngine.UI;

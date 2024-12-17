@@ -1,5 +1,26 @@
+#region Summary
+// GameManager is responsible for managing core game states in the HouseDefence namespace. 
+// It handles:
+// - Pause and Resume functionality using Time.timeScale.
+// - Game Over state activation when the house is destroyed, triggered via OnHouseDeathEvent.
+// - Scene initialization when the "MainGame" scene is loaded.
+//
+// Key Features:
+// - Pause and Game Over UI panels activation/deactivation.
+// - Handles game pause toggle via a Pause button.
+// - Manages totalKills tracking and game initialization methods.
+//
+// Dependencies:
+// - EventManager for listening to game events.
+// - GameService for accessing global services.
+//
+// Notes:
+// - Time.timeScale is used to pause and resume game time.
+// - The class is scene-aware and sets up necessary systems when "MainGame" is loaded.
+#endregion
 using HouseDefence.Services;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace HouseDefence.Manager
@@ -7,7 +28,7 @@ namespace HouseDefence.Manager
     public class GameManager : MonoBehaviour
     {
         [Header("Pause Menu UI")]
-        [SerializeField]  GameObject _pauseMenuUI; 
+        [SerializeField] GameObject _pauseMenuUI;
         [Header("PauseButton")]
         [SerializeField] private Button _pauseButton;
 
@@ -19,12 +40,14 @@ namespace HouseDefence.Manager
 
         private void OnEnable()
         {
+            SceneManager.sceneLoaded += OnSceneLoaded;
             GameService.Instance.eventManager.OnHouseDeathEvent.AddListener(ActivateGameOverMenu);
             _pauseButton.onClick.AddListener(OnPauseButton);
         }
 
         private void OnDisable()
         {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
             GameService.Instance.eventManager.OnHouseDeathEvent.RemoveListener(ActivateGameOverMenu);
             _pauseButton.onClick.RemoveListener(OnPauseButton);
         }
@@ -75,6 +98,23 @@ namespace HouseDefence.Manager
             return isPaused;
         }
 
+        #endregion
+
+        #region Game Initialization Methods
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (scene.name == "MainGame")
+            {
+                // Initialize or reset all systems (player, enemies, UI, etc.)
+                InitializeGame();
+            }
+        }
+
+        private void InitializeGame()
+        {
+
+        }
         #endregion
     }
 }

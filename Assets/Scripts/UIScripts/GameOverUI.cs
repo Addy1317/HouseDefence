@@ -1,6 +1,9 @@
+#region Summary
+// The GameOverUI class handles the display of the game over screen, including buttons for replaying the game, going back to the main menu, and quitting the game.
+// It also displays the total number of kills achieved during the session.
+// The class manages button clicks to navigate between scenes and updates the UI to show the total kills count from the UIManager.
+#endregion
 using HouseDefence.Services;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -27,9 +30,6 @@ namespace HouseDefence.UI
             _replayButton.onClick.AddListener(OnRelayButton);
             _homeButton.onClick.AddListener(OnHomeButton);
             _quitButton.onClick.AddListener(OnQuitButton);
-
-            int _totalKills = GameService.Instance.uiManager.GetKillCount();
-            UpdateKillCountDisplay(_totalKills);
         }
 
         private void OnDisable()
@@ -37,6 +37,12 @@ namespace HouseDefence.UI
             _replayButton.onClick.RemoveListener(OnRelayButton);
             _homeButton.onClick.RemoveListener(OnHomeButton);
             _quitButton.onClick.RemoveListener(OnQuitButton);
+        }
+
+        private void Start()
+        {
+            int _totalKills = GameService.Instance.uiManager.GetKillCount();
+            UpdateKillCountDisplay(_totalKills);
         }
 
         #region GameOver Buttons Methods

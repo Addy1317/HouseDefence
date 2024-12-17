@@ -1,4 +1,19 @@
-using System.Collections;
+#region Summary
+/// <summary>
+/// GenericObjectPool<T> is a generic object pooling class for MonoBehaviour-based objects.
+/// It provides an efficient way to manage object instances by recycling objects instead of instantiating and destroying them repeatedly.
+/// 
+/// Key Features:
+/// - Initializes a pool of objects of type T.
+/// - Dynamically expands the pool if needed.
+/// - Retrieves an object from the pool and activates it.
+/// - Returns an object to the pool and deactivates it.
+/// 
+/// Usage:
+/// - Pass a prefab of type T, the initial pool size, and optionally a parent transform.
+/// </summary>
+/// <typeparam name="T">The MonoBehaviour-based object type to be pooled.</typeparam>
+#endregion
 using System.Collections.Generic;
 using UnityEngine;
 

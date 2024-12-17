@@ -1,3 +1,10 @@
+#region Summary
+/// <summary>
+/// EnemyBase serves as a base class for enemy characters in the game, handling health management, damage processing,
+/// and death behavior. It includes functionality for taking damage, resetting health, and invoking death events.
+/// Subclasses can implement specific health bar updates and additional enemy-specific behaviors.
+/// </summary>
+#endregion
 using HouseDefence.Services;
 using UnityEngine;
 

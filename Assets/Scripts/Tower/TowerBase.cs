@@ -1,3 +1,9 @@
+#region Summary
+// TowerBase is an abstract class for tower behavior in a tower defense game, handling the tower's health, attack, and targeting mechanics.
+// It manages the tower's health, detects enemies within range, and fires bullets at the enemies with a cooldown between attacks.
+// The class also manages bullet pooling and provides functionality for rotating the tower to face its target. 
+// Derived classes must implement health bar updates and may override death behavior (e.g., destruction or animation).
+#endregion
 using HouseDefence.Bullet;
 using HouseDefence.Enemy;
 using UnityEngine;
@@ -13,8 +19,7 @@ namespace HouseDefence.Tower
         private float towerCurrentHealth;
         public float TowerCurrentHealth => towerCurrentHealth;
 
-        // Bullet Object Pool
-        [SerializeField] private GameObject bulletPrefab; // Bullet prefab (assigned in the inspector)
+        [SerializeField] private GameObject bulletPrefab; 
         private GenericObjectPool<BulletController> bulletPool;
 
         private float attackCooldown;
@@ -36,7 +41,6 @@ namespace HouseDefence.Tower
         }
         protected void Update()
         {
-            // Check for enemies in range and attack
             if (Time.time - lastAttackTime >= attackCooldown)
             {
                 EnemyController targetEnemy = FindEnemyInRange();
@@ -72,7 +76,7 @@ namespace HouseDefence.Tower
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, towerSO.towerRange);
             foreach (var hitCollider in hitColliders)
             {
-                if (hitCollider.CompareTag("Enemy"))  // Assuming enemy objects have the "Enemy" tag
+                if (hitCollider.CompareTag("Enemy"))  
                 {
                     return hitCollider.GetComponent<EnemyController>();
                 }
@@ -89,10 +93,10 @@ namespace HouseDefence.Tower
 
         private void Shoot(EnemyController targetEnemy)
         {
-            BulletController bullet = GameService.Instance.bulletManager.GetBullet(); // Get bullet from the pool
-            bullet.transform.position = towerHead.position; // Spawn bullet at the tower
-            bullet.Initialize(targetEnemy, towerSO.damageToEnemy);  // Initialize bullet with target enemy and damage
-            lastAttackTime = Time.time;  // Reset attack cooldown timer
+            BulletController bullet = GameService.Instance.bulletManager.GetBullet(); 
+            bullet.transform.position = towerHead.position; 
+            bullet.Initialize(targetEnemy, towerSO.damageToEnemy);  
+            lastAttackTime = Time.time;  
         }
 
         private void OnDrawGizmosSelected()

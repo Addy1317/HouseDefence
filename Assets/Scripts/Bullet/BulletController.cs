@@ -1,7 +1,12 @@
+#region Summary
+/// <summary>
+/// BulletController manages the behavior of bullets in the game. It handles the movement of bullets towards a target enemy, 
+/// applies damage when the bullet reaches the enemy, and returns the bullet to the object pool once it has hit its target or 
+/// if the target is no longer valid.
+/// </summary>
+#endregion
 using HouseDefence.Services;
 using HouseDefence.Enemy;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HouseDefence.Bullet
@@ -10,9 +15,9 @@ namespace HouseDefence.Bullet
     {
         private EnemyController _targetEnemy;
         private float _damage;
-        private float speed = 5f;  
+        private float _speed = 5f;  
 
-        public void Initialize(EnemyController enemy, float bulletDamage)
+        internal void Initialize(EnemyController enemy, float bulletDamage)
         {
             _targetEnemy = enemy;
             _damage = bulletDamage;
@@ -28,19 +33,16 @@ namespace HouseDefence.Bullet
             if (_targetEnemy != null)
             {
                 Vector3 direction = (_targetEnemy.transform.position - transform.position).normalized;
-                transform.position += direction * speed * Time.deltaTime;
+                transform.position += direction * _speed * Time.deltaTime;
 
                 if (Vector3.Distance(transform.position, _targetEnemy.transform.position) < 0.5f)
                 {
                     _targetEnemy.EnemyTakeDamage(_damage);
                     ReturnToPool();
-                    //_targetEnemy.DestroyEnemy();
-
                 }
             }
             else
             {
-                // If no target enemy, return to the pool
                 ReturnToPool();
             }
         }

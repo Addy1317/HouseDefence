@@ -1,5 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+#region Summary
+/// <summary>
+/// AudioSO is a ScriptableObject used for managing audio settings in the game.
+/// It handles the background music and sound effects (SFX), storing audio clips 
+/// and their corresponding volumes. It allows easy retrieval of specific SFX clips 
+/// based on the type (e.g., button click sounds).
+/// </summary>
+#endregion
 using UnityEngine;
 
 namespace HouseDefence.Audio
@@ -21,15 +27,14 @@ namespace HouseDefence.Audio
         }
 
         [Header("Background Music")]
-        [SerializeField] public AudioClip backgroundMusicClip;
-        [SerializeField][Range(0f, 1f)] public float backgroundMusicVolume = 0.5f;
+        [SerializeField] internal AudioClip backgroundMusicClip;
+        [SerializeField][Range(0f, 1f)] internal float backgroundMusicVolume = 0.5f;
 
         [Header("SFX")]
-        [SerializeField] public SFXAudio[] sfxClips;
-        [SerializeField][Range(0f, 1f)] public float sfxVolume = 0.5f;
+        [SerializeField] internal SFXAudio[] sfxClips;
+        [SerializeField][Range(0f, 1f)] internal float sfxVolume = 0.5f;
 
-        // Method to get SFX clip by enum
-        public AudioClip GetSFXClip(SFXType sfxType)
+        internal AudioClip GetSFXClip(SFXType sfxType)
         {
             foreach (var sfx in sfxClips)
             {

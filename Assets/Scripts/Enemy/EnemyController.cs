@@ -1,3 +1,11 @@
+#region Summary
+/// <summary>
+/// EnemyController is a concrete implementation of the EnemyBase class, handling the movement, health management, and 
+/// interactions of the enemy character in the game. It uses a NavMeshAgent for pathfinding towards a target house, 
+/// applies damage when colliding with the house, and updates the health bar. The class also manages the initialization 
+/// and reset of enemy health, as well as collision handling with the house object.
+/// </summary>
+#endregion
 using HouseDefence.House;
 using UnityEngine;
 using UnityEngine.AI;
@@ -57,6 +65,7 @@ namespace HouseDefence.Enemy
                 }
             }
         }
+
         internal void ResetHealth()
         {
             ResetEnemyHealth();
