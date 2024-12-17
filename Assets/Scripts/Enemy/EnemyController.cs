@@ -54,7 +54,7 @@ namespace HouseDefence.ZombieEnemy
             _healthBar.value = EnemyCurrentHealth / EnemySO.maxHealth; 
         }
 
-        private void DestroyEnemy()
+        internal void DestroyEnemy()
         {
             Debug.Log("Enemy destroyed.");
             gameObject.SetActive(false); 

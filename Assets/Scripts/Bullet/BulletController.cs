@@ -30,7 +30,7 @@ namespace HouseDefence.Bullet
                 if (Vector3.Distance(transform.position, _targetEnemy.transform.position) < 0.5f)
                 {
                     _targetEnemy.EnemyTakeDamage(_damage);
-                   
+                    _targetEnemy.DestroyEnemy();
                     ReturnToPool();
                 }
             }

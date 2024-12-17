@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc993bbe6d606e45af6edc1f4aa9d17, type: 3}
   m_Name: EnemySpawnSO
   m_EditorClassIdentifier: 
-  spawnDelay: 10
+  spawnDelay: 5
   waveDelay: 0
   enemyDefinitions:
   - enemyType: 0
