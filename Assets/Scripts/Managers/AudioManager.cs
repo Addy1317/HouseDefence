@@ -7,7 +7,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HouseDefence.Audio
+namespace TowerDefence.Audio
 {
     public class AudioManager : MonoBehaviour
     {
@@ -61,6 +61,10 @@ namespace HouseDefence.Audio
             if (clip != null)
             {
                 AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, _audioSettings.sfxVolume);
+            }
+            else
+            {
+                Debug.LogError($"SFX Clip for {sfxType} not found!");
             }
         }
 

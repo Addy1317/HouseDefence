@@ -15,18 +15,19 @@
 // - Each of these services is a crucial part of the game's infrastructure, including gameplay mechanics, UI, and event handling.
 
 #endregion
-using HouseDefence.Audio;
-using HouseDefence.Bullet;
-using HouseDefence.EnemySpawn;
-using HouseDefence.Generic;
-using HouseDefence.Grid;
-using HouseDefence.Manager;
-using HouseDefence.Tower;
-using HouseDefence.UI;
+using TowerDefence.Audio;
+using TowerDefence.Bullet;
+using TowerDefence.EnemySpawn;
+using TowerDefence.Generic;
+using TowerDefence.Grid;
+using TowerDefence.Manager;
+using TowerDefence.Tower;
+using TowerDefence.UI;
+using TowerDefence.VFX;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HouseDefence.Services
+namespace TowerDefence.Services
 {
     public class GameService : GenericMonoSingleton<GameService>
     {
@@ -39,6 +40,7 @@ namespace HouseDefence.Services
         [SerializeField] internal TowerManager towerManager;
         [SerializeField] internal GridManager gridManager;
         [SerializeField] internal UIManager uiManager;
+        [SerializeField] internal VFXManager vfxManager;
         [SerializeField] internal EventManager eventManager;
 
         protected override void Awake()
@@ -68,6 +70,7 @@ namespace HouseDefence.Services
             { "TowerManager", towerManager },
             { "CustomGridManager", gridManager },
             { "UIManager", uiManager },
+            { "VFXManager", vfxManager },
             { "EventManager", eventManager }
             };
 

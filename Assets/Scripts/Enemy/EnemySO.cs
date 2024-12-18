@@ -5,10 +5,10 @@
 /// the characteristics of different enemy types in a modular and data-driven way.
 /// </summary>
 #endregion
-using HouseDefence.EnemySpawn;
+using TowerDefence.EnemySpawn;
 using UnityEngine;
 
-namespace HouseDefence.Enemy
+namespace TowerDefence.Enemy
 {
     [CreateAssetMenu(fileName = "EnemySO", menuName = "Game/EnemyData", order = 0)]
     public class EnemySO : ScriptableObject

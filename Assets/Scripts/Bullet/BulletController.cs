@@ -5,11 +5,11 @@
 /// if the target is no longer valid.
 /// </summary>
 #endregion
-using HouseDefence.Services;
-using HouseDefence.Enemy;
+using TowerDefence.Services;
+using TowerDefence.Enemy;
 using UnityEngine;
 
-namespace HouseDefence.Bullet
+namespace TowerDefence.Bullet
 {
     public class BulletController : MonoBehaviour
     {

@@ -6,12 +6,12 @@
 /// and reset of enemy health, as well as collision handling with the house object.
 /// </summary>
 #endregion
-using HouseDefence.House;
+using TowerDefence.House;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-namespace HouseDefence.Enemy
+namespace TowerDefence.Enemy
 {
     public class EnemyController : EnemyBase
     {
@@ -58,7 +58,7 @@ namespace HouseDefence.Enemy
             Debug.Log("Collided with House");
             if (other.CompareTag("House"))
             {
-                HouseController houseController = other.GetComponent<HouseController>();
+                TowerController houseController = other.GetComponent<TowerController>();
                 if (houseController != null)
                 {
                     Debug.Log($"Enemy collided with the House. Damage to apply: {EnemySO.damageToHouse}");

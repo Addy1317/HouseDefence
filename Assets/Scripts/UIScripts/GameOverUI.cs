@@ -3,13 +3,13 @@
 // It also displays the total number of kills achieved during the session.
 // The class manages button clicks to navigate between scenes and updates the UI to show the total kills count from the UIManager.
 #endregion
-using HouseDefence.Services;
+using TowerDefence.Services;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace HouseDefence.UI
+namespace TowerDefence.UI
 {
     public class GameOverUI : MonoBehaviour
     {
@@ -29,6 +29,7 @@ namespace HouseDefence.UI
             _replayButton.onClick.AddListener(OnRelayButton);
             _homeButton.onClick.AddListener(OnHomeButton);
             _quitButton.onClick.AddListener(OnQuitButton);
+
         }
 
         private void OnDisable()
@@ -42,6 +43,10 @@ namespace HouseDefence.UI
         {
             int _totalKills = GameService.Instance.uiManager.GetKillCount();
             UpdateKillCountDisplay(_totalKills);
+
+            GameService.Instance.vfxManager.AddHoverEffect(_replayButton);
+            GameService.Instance.vfxManager.AddHoverEffect(_homeButton);
+            GameService.Instance.vfxManager.AddHoverEffect(_quitButton);
         }
 
         #region GameOver Buttons Methods

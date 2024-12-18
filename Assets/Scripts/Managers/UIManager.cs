@@ -2,12 +2,12 @@
 // UIManager is responsible for managing and updating the game's UI elements, including health, wave count, kills, currency, and tower selection.
 // It updates the UI when certain events happen, such as enemy deaths or health changes.
 #endregion
-using HouseDefence.Services;
+using TowerDefence.Services;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HouseDefence.UI
+namespace TowerDefence.UI
 {
     public class UIManager : MonoBehaviour
     {
@@ -86,11 +86,13 @@ namespace HouseDefence.UI
         {
             _killCount = kills;
             _killCountText.text = $"Kills: {kills}";
+           GameService.Instance.vfxManager.ScaleTextUpAndDown(_killCountText);
         }
 
         internal void UpdateCurrency(int coins)
         {
             _coinText.text = $"Coins: {coins}";
+            GameService.Instance.vfxManager.ScaleTextUpAndDown(_coinText);
         }
         #endregion
 
@@ -105,6 +107,7 @@ namespace HouseDefence.UI
         internal void UpdateWaveCount(int currentWave)
         {
             _wavesText.text = $"Wave: {currentWave}";
+            GameService.Instance.vfxManager.ScaleTextUpAndDown(_wavesText);
         }
         #endregion
     }

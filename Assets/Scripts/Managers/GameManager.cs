@@ -18,12 +18,12 @@
 // - Time.timeScale is used to pause and resume game time.
 // - The class is scene-aware and sets up necessary systems when "MainGame" is loaded.
 #endregion
-using HouseDefence.Services;
+using TowerDefence.Services;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace HouseDefence.Manager
+namespace TowerDefence.Manager
 {
     public class GameManager : MonoBehaviour
     {

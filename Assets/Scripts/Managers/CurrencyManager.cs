@@ -6,7 +6,7 @@
 #endregion
 using UnityEngine;
 
-namespace HouseDefence
+namespace TowerDefence
 {
     public class CurrencyManager : MonoBehaviour
     {

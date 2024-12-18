@@ -4,12 +4,12 @@
 // The class also manages bullet pooling and provides functionality for rotating the tower to face its target. 
 // Derived classes must implement health bar updates and may override death behavior (e.g., destruction or animation).
 #endregion
-using HouseDefence.Bullet;
-using HouseDefence.Enemy;
+using TowerDefence.Bullet;
+using TowerDefence.Enemy;
 using UnityEngine;
-using HouseDefence.Services;
+using TowerDefence.Services;
 
-namespace HouseDefence.Tower
+namespace TowerDefence.Tower
 {
     public abstract class TowerBase : MonoBehaviour
     {

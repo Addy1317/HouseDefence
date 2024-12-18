@@ -8,7 +8,7 @@
 #endregion
 using UnityEngine;
 
-namespace HouseDefence.Generic
+namespace TowerDefence.Generic
 {
     public class GenericMonoSingleton<T> : MonoBehaviour where T : GenericMonoSingleton<T>
     {

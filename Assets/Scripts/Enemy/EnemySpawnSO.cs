@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HouseDefence.EnemySpawn
+namespace TowerDefence.EnemySpawn
 {
     public enum EnemyType
     {

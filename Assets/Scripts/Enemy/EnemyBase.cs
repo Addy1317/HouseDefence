@@ -5,10 +5,10 @@
 /// Subclasses can implement specific health bar updates and additional enemy-specific behaviors.
 /// </summary>
 #endregion
-using HouseDefence.Services;
+using TowerDefence.Services;
 using UnityEngine;
 
-namespace HouseDefence.Enemy
+namespace TowerDefence.Enemy
 {
     public abstract class EnemyBase : MonoBehaviour
     {

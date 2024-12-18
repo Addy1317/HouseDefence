@@ -3,12 +3,12 @@
 /// Manages the house's health, damage handling, and destruction events in the game.
 /// </summary>
 #endregion
-using HouseDefence.Services;
+using TowerDefence.Services;
 using UnityEngine;
 
-namespace HouseDefence.House
+namespace TowerDefence.House
 {
-    public class HouseController : MonoBehaviour
+    public class TowerController : MonoBehaviour
     {
         [Header("House Health")]
         [SerializeField] private int _houesMaxHealth = 100; 
@@ -30,6 +30,7 @@ namespace HouseDefence.House
         {
             _houseCurrentHealth -= damage;
             _houseCurrentHealth = Mathf.Clamp(_houseCurrentHealth, 0, _houesMaxHealth);
+            GameService.Instance.vfxManager.ShakeCameraEffect();
 
             UpdateHouseUI();
 

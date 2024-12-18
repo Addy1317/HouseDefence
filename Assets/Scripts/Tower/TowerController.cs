@@ -6,7 +6,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HouseDefence.Tower
+namespace TowerDefence.Tower
 {
     public class TowerController : TowerBase
     {

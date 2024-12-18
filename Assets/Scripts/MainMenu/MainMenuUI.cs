@@ -6,8 +6,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TowerDefence.Services;
+using TowerDefence.VFX;
 
-namespace HouseDefence.UI
+namespace TowerDefence.UI
 {
     public class MainMenuUI : MonoBehaviour
     {
@@ -26,6 +28,9 @@ namespace HouseDefence.UI
         [SerializeField] private GameObject _settingsPanel;
         [SerializeField] private Button _settingsPanelCloseButton;
 
+        [Header("VFX Manager")]
+        [SerializeField] private VFXManager _vfxManager;
+
         private void OnEnable()
         {
             _playButton.onClick.AddListener(OnPlayButton);
@@ -36,6 +41,13 @@ namespace HouseDefence.UI
             _controlsPanelCloseButton.onClick.AddListener(OnControlPanelCloseButton);
 
             _settingsPanelCloseButton.onClick.AddListener(OnSettingsPanelCloseButton);
+
+            _vfxManager.AddHoverEffect(_playButton);
+            _vfxManager.AddHoverEffect(_controlsButton);
+            _vfxManager.AddHoverEffect(_settingsButton);
+            _vfxManager.AddHoverEffect(_quitButton);
+            _vfxManager.AddHoverEffect(_controlsPanelCloseButton);
+            _vfxManager.AddHoverEffect(_settingsPanelCloseButton);
         }
 
         private void OnDisable()

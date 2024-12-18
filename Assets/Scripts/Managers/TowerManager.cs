@@ -4,7 +4,7 @@
 #endregion
 using UnityEngine;
 
-namespace HouseDefence.Tower
+namespace TowerDefence.Tower
 {
     [System.Serializable]
     public struct TowerInfo

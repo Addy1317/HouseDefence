@@ -8,11 +8,23 @@
 #endregion
 using UnityEngine;
 
-namespace HouseDefence.Audio
+namespace TowerDefence.Audio
 {
     public enum SFXType
     {
-        OnButtonClickSFX
+        OnButtonClickSFX,
+        OnTowerSetUpSFX,
+        OnTowerShootingEnemySFX,
+        OnTowerAddingSFX,
+        OnTowerRemovingSFX,
+
+        OnEnemySpawningSFX,
+        OnEnemyDestroyingHouseSFX,
+        OnEnemyGettingKilledSFX,
+
+        OnGamePausedSFX,
+        OnGameOverSFX,
+
     }
 
     [CreateAssetMenu(fileName = "AudioSO", menuName = "Audio/AudioSO")]

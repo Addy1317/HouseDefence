@@ -4,12 +4,12 @@
 // The UI interacts with GameService and GridManager to place and remove towers accordingly. 
 // The SetTowerPrefab method allows setting a specific tower prefab to be added to the grid.
 #endregion
-using HouseDefence.Services;
-using HouseDefence.Tower;
+using TowerDefence.Services;
+using TowerDefence.Tower;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HouseDefence.UI
+namespace TowerDefence.UI
 {
     public class TowerAddRemoveUI : MonoBehaviour
     {
@@ -24,12 +24,19 @@ namespace HouseDefence.UI
         {
             _addTowerButton.onClick.AddListener(AddTowerOnGrid);
             _removeTowerButton.onClick.AddListener(RemoveTowerFromGrid);
+
         }
 
         private void OnDisable()
         {
             _addTowerButton.onClick.RemoveListener(AddTowerOnGrid);
             _removeTowerButton.onClick.RemoveListener(RemoveTowerFromGrid);
+        }
+
+        private void Start()
+        {
+            GameService.Instance.vfxManager.AddHoverEffect(_addTowerButton);
+            GameService.Instance.vfxManager.AddHoverEffect(_removeTowerButton);
         }
 
         #region Tower Add Remove Methods

@@ -4,11 +4,11 @@
 /// It handles cell selection, highlights selected cells, and interfaces with the UI for tower placement.
 /// </summary>
 #endregion
-using HouseDefence.Services;
-using HouseDefence.Tower;
+using TowerDefence.Services;
+using TowerDefence.Tower;
 using UnityEngine;
 
-namespace HouseDefence.Grid
+namespace TowerDefence.Grid
 {
     public class GridController : MonoBehaviour
     {

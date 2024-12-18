@@ -3,10 +3,10 @@
 // It interacts with the GridController to determine grid size and placement rules for towers. 
 // The class provides functions to place, remove, and check tower placement in a grid-based layout.
 #endregion
-using HouseDefence.Tower;
+using TowerDefence.Tower;
 using UnityEngine;
 
-namespace HouseDefence.Grid
+namespace TowerDefence.Grid
 {
     public class GridManager : MonoBehaviour
     {

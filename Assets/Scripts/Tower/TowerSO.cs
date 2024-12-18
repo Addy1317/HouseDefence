@@ -5,7 +5,7 @@
 #endregion
 using UnityEngine;
 
-namespace HouseDefence.Tower
+namespace TowerDefence.Tower
 {
     public enum TowerType
     {

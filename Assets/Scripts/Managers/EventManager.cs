@@ -8,10 +8,10 @@
 // This class uses the Singleton pattern to ensure only one instance exists throughout the game.
 // Events are initialized in the Awake method, and the class persists across scene transitions.
 #endregion
-using HouseDefence.Events;
+using TowerDefence.Events;
 using UnityEngine;
 
-namespace HouseDefence
+namespace TowerDefence
 {
     public class EventManager : MonoBehaviour
     {

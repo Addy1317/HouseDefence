@@ -6,7 +6,7 @@
 #endregion
 using UnityEngine;
 
-namespace HouseDefence.Bullet
+namespace TowerDefence.Bullet
 {
     public class BulletManager : MonoBehaviour
     {

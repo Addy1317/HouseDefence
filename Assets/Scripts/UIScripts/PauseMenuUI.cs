@@ -3,11 +3,13 @@
 // It handles button clicks for resuming the game, restarting, going to the main menu, opening settings, and quitting the game.
 // The class also allows for closing the settings panel via a dedicated button.
 #endregion
+using TowerDefence.Manager;
+using TowerDefence.Services;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace HouseDefence.UI
+namespace TowerDefence.UI
 {
     public class PauseMenuUI : MonoBehaviour
     {
@@ -34,6 +36,7 @@ namespace HouseDefence.UI
             _quitButton.onClick.AddListener(OnQuitButton);
 
             _settingsPanelCloseButton.onClick.AddListener(OnSettingsPanelCloseButton);
+
         }
 
         private void OnDisable()
@@ -45,6 +48,16 @@ namespace HouseDefence.UI
             _quitButton.onClick.RemoveListener(OnQuitButton);
 
             _settingsPanelCloseButton.onClick.RemoveListener(OnSettingsPanelCloseButton);
+        }
+
+        private void Start()
+        {
+            GameService.Instance.vfxManager.AddHoverEffect(_resumeButton);
+            GameService.Instance.vfxManager.AddHoverEffect(_restartButton);
+            GameService.Instance.vfxManager.AddHoverEffect(_homeButton);
+            GameService.Instance.vfxManager.AddHoverEffect(_settingsButton);
+            GameService.Instance.vfxManager.AddHoverEffect(_quitButton);
+            GameService.Instance.vfxManager.AddHoverEffect(_settingsPanelCloseButton);
         }
 
         #region PauseMenu Buttons Methods

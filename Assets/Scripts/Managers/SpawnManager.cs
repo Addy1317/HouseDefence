@@ -2,13 +2,13 @@
 // The SpawnManager is responsible for managing the spawning of enemies during the game. 
 // It handles enemy pool management, wave-based enemy spawning, and the return of enemies to the pool after they are defeated.
 #endregion
-using HouseDefence.Enemy;
-using HouseDefence.Services;
+using TowerDefence.Enemy;
+using TowerDefence.Services;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HouseDefence.EnemySpawn
+namespace TowerDefence.EnemySpawn
 {
     public class SpawnManager : MonoBehaviour
     {
@@ -102,7 +102,7 @@ namespace HouseDefence.EnemySpawn
         {
             for (int i = list.Count - 1; i > 0; i--)
             {
-                int randomIndex = Random.Range(1, i + 2);
+                int randomIndex = Random.Range(0, i + 1);
                 var temp = list[i];
                 list[i] = list[randomIndex];
                 list[randomIndex] = temp;
