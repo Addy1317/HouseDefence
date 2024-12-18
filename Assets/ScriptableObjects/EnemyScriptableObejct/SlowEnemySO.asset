@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: SlowEnemy
   enemyType: 1
-  maxHealth: 100
-  moveSpeed: 2
-  attackInterval: 2
-  damageToHouse: 1
-  goldReward: 3
+  maxHealth: 200
+  moveSpeed: 1
+  attackInterval: 3
+  damageToHouse: 5
+  goldReward: 10

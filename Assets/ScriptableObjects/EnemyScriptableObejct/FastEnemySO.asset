@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: FastEnemy
   enemyType: 0
   maxHealth: 100
-  moveSpeed: 3
+  moveSpeed: 2
   attackInterval: 2
-  damageToHouse: 1
+  damageToHouse: 3
   goldReward: 5

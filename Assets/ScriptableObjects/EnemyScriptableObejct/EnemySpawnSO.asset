@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnDelay: 5
   waveDelay: 2
-  poolSize: 5
+  poolSize: 20
   waveConfigurations:
   - waveName: Wave - 1
     totalEnemies: 10
@@ -31,20 +31,6 @@ MonoBehaviour:
     - enemyType: 1
       enemyPrefab: {fileID: 5505866817948683002, guid: c1b71e309df286d42bfbc1b76af29650, type: 3}
   - waveName: Wave - 3
-    totalEnemies: 20
-    enemyDefinitions:
-    - enemyType: 0
-      enemyPrefab: {fileID: 578861405773373795, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
-    - enemyType: 1
-      enemyPrefab: {fileID: 5505866817948683002, guid: c1b71e309df286d42bfbc1b76af29650, type: 3}
-  - waveName: Wave - 4
-    totalEnemies: 20
-    enemyDefinitions:
-    - enemyType: 0
-      enemyPrefab: {fileID: 578861405773373795, guid: b6516d17b12f2014797e14c4b0d26ce0, type: 3}
-    - enemyType: 1
-      enemyPrefab: {fileID: 5505866817948683002, guid: c1b71e309df286d42bfbc1b76af29650, type: 3}
-  - waveName: Wave - 5
     totalEnemies: 20
     enemyDefinitions:
     - enemyType: 0
