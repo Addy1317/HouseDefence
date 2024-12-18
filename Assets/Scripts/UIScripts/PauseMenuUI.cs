@@ -3,6 +3,7 @@
 // It handles button clicks for resuming the game, restarting, going to the main menu, opening settings, and quitting the game.
 // The class also allows for closing the settings panel via a dedicated button.
 #endregion
+using TowerDefence.Audio;
 using TowerDefence.Manager;
 using TowerDefence.Services;
 using UnityEngine;
@@ -64,26 +65,31 @@ namespace TowerDefence.UI
 
         private void OnResumeButton()
         {
+            GameService.Instance.audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             _pauseMenuPanel.SetActive(false);
         }
 
         private void OnRestartButton()
         {
+            GameService.Instance.audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             SceneManager.LoadScene("MainGame");
         }
 
         private void OnHomeButton()
         {
+            GameService.Instance.audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             SceneManager.LoadScene("MainMenu");
         }
 
         private void OnSettingsButton()
         {
+            GameService.Instance.audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             _settingsPanel.SetActive(true);
         }
 
         private void OnQuitButton()
         {
+            GameService.Instance.audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             Application.Quit();
         }
         #endregion
@@ -91,6 +97,7 @@ namespace TowerDefence.UI
         #region SettingsPanel Buttons Methods
         private void OnSettingsPanelCloseButton()
         {
+            GameService.Instance.audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             _settingsPanel.SetActive(false);
         }
         #endregion

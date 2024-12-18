@@ -52,6 +52,11 @@ namespace TowerDefence.Manager
             _pauseButton.onClick.RemoveListener(OnPauseButton);
         }
 
+        private void Start()
+        {
+            GameService.Instance.vfxManager.AddHoverEffect(_pauseButton);
+        }
+
         #region GameOver Methods
         internal void ActivateGameOverMenu()
         {

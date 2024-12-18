@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TowerDefence.Audio;
 
 namespace TowerDefence.UI
 {
@@ -52,17 +53,20 @@ namespace TowerDefence.UI
         #region GameOver Buttons Methods
         private void OnRelayButton()
         {
+            GameService.Instance.audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             _gameOverPanel.SetActive(false);
             SceneManager.LoadScene("MainGame");
         }
 
         private void OnHomeButton()
         {
+            GameService.Instance.audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             SceneManager.LoadScene("MainMenu");
         }
 
         private void OnQuitButton()
         {
+            GameService.Instance.audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             Application.Quit();
         }
 

@@ -86,13 +86,13 @@ namespace TowerDefence.UI
         {
             _killCount = kills;
             _killCountText.text = $"Kills: {kills}";
-           GameService.Instance.vfxManager.ScaleTextUpAndDown(_killCountText);
+           GameService.Instance.vfxManager.ScaleTextUpAndDownEffect(_killCountText);
         }
 
         internal void UpdateCurrency(int coins)
         {
             _coinText.text = $"Coins: {coins}";
-            GameService.Instance.vfxManager.ScaleTextUpAndDown(_coinText);
+            GameService.Instance.vfxManager.ScaleTextUpAndDownEffect(_coinText);
         }
         #endregion
 
@@ -107,7 +107,7 @@ namespace TowerDefence.UI
         internal void UpdateWaveCount(int currentWave)
         {
             _wavesText.text = $"Wave: {currentWave}";
-            GameService.Instance.vfxManager.ScaleTextUpAndDown(_wavesText);
+            GameService.Instance.vfxManager.ScaleTextUpAndDownEffect(_wavesText);
         }
         #endregion
     }

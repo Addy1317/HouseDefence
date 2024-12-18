@@ -1059,6 +1059,7 @@ MonoBehaviour:
   _controlsPanelCloseButton: {fileID: 1442046379}
   _settingsPanel: {fileID: 1246468480}
   _settingsPanelCloseButton: {fileID: 360854902}
+  _audioManager: {fileID: 169506964}
   _vfxManager: {fileID: 1115017387}
 --- !u!1 &963194225
 GameObject:

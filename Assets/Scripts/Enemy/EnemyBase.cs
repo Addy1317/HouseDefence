@@ -5,6 +5,7 @@
 /// Subclasses can implement specific health bar updates and additional enemy-specific behaviors.
 /// </summary>
 #endregion
+using TowerDefence.Audio;
 using TowerDefence.Services;
 using UnityEngine;
 
@@ -41,6 +42,7 @@ namespace TowerDefence.Enemy
 
         protected virtual void OnEnemyDeath()
         {
+            GameService.Instance.audioManager.PlaySFX(SFXType.OnEnemyGettingKilledSFX);
             GameService.Instance.eventManager.OnEnemyDeathEvent.InvokeEvents(enemySO.goldReward);
 
             EnemyController enemyController = this as EnemyController;

@@ -3,12 +3,13 @@
 /// Manages the house's health, damage handling, and destruction events in the game.
 /// </summary>
 #endregion
+using TowerDefence.Audio;
 using TowerDefence.Services;
 using UnityEngine;
 
 namespace TowerDefence.House
 {
-    public class TowerController : MonoBehaviour
+    public class HouseController : MonoBehaviour
     {
         [Header("House Health")]
         [SerializeField] private int _houesMaxHealth = 100; 
@@ -30,6 +31,7 @@ namespace TowerDefence.House
         {
             _houseCurrentHealth -= damage;
             _houseCurrentHealth = Mathf.Clamp(_houseCurrentHealth, 0, _houesMaxHealth);
+            GameService.Instance.audioManager.PlaySFX(SFXType.OnHouseTakingDamageSFX);
             GameService.Instance.vfxManager.ShakeCameraEffect();
 
             UpdateHouseUI();
@@ -48,6 +50,7 @@ namespace TowerDefence.House
 
         private void OnHouseDeath()
         {
+            GameService.Instance.audioManager.PlaySFX(SFXType.OnEnemyDestroyingHouseSFX);
             Debug.Log("House Destroyed");
             GameService.Instance.eventManager.OnHouseDeathEvent.InvokeEvent();
         }

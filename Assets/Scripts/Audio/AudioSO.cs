@@ -13,7 +13,7 @@ namespace TowerDefence.Audio
     public enum SFXType
     {
         OnButtonClickSFX,
-        OnTowerSetUpSFX,
+
         OnTowerShootingEnemySFX,
         OnTowerAddingSFX,
         OnTowerRemovingSFX,
@@ -22,9 +22,7 @@ namespace TowerDefence.Audio
         OnEnemyDestroyingHouseSFX,
         OnEnemyGettingKilledSFX,
 
-        OnGamePausedSFX,
-        OnGameOverSFX,
-
+        OnHouseTakingDamageSFX
     }
 
     [CreateAssetMenu(fileName = "AudioSO", menuName = "Audio/AudioSO")]

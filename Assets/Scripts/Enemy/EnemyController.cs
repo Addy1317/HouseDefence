@@ -58,7 +58,7 @@ namespace TowerDefence.Enemy
             Debug.Log("Collided with House");
             if (other.CompareTag("House"))
             {
-                TowerController houseController = other.GetComponent<TowerController>();
+                HouseController houseController = other.GetComponent<HouseController>();
                 if (houseController != null)
                 {
                     Debug.Log($"Enemy collided with the House. Damage to apply: {EnemySO.damageToHouse}");

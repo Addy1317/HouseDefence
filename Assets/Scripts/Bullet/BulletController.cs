@@ -8,6 +8,7 @@
 using TowerDefence.Services;
 using TowerDefence.Enemy;
 using UnityEngine;
+using TowerDefence.Audio;
 
 namespace TowerDefence.Bullet
 {
@@ -39,7 +40,9 @@ namespace TowerDefence.Bullet
 
                 if (Vector3.Distance(transform.position, _targetEnemy.transform.position) < 0.5f)
                 {
+                    GameService.Instance.audioManager.PlaySFX(SFXType.OnTowerShootingEnemySFX);
                     _targetEnemy.EnemyTakeDamage(_damage);
+
                     ReturnToPool();
                 }
             }

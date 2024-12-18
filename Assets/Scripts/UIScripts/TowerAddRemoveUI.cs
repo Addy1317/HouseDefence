@@ -4,6 +4,7 @@
 // The UI interacts with GameService and GridManager to place and remove towers accordingly. 
 // The SetTowerPrefab method allows setting a specific tower prefab to be added to the grid.
 #endregion
+using TowerDefence.Audio;
 using TowerDefence.Services;
 using TowerDefence.Tower;
 using UnityEngine;
@@ -42,9 +43,12 @@ namespace TowerDefence.UI
         #region Tower Add Remove Methods
         private void AddTowerOnGrid()
         {
+            GameService.Instance.audioManager.PlaySFX(SFXType.OnButtonClickSFX);
+
             if (_towerPrefabToAdd != null)
             {
                 GameService.Instance.gridManager.PlaceTowerAtCell(_towerPrefabToAdd.gameObject);
+                GameService.Instance.audioManager.PlaySFX(SFXType.OnTowerAddingSFX);
             }
             else
             {
@@ -54,7 +58,9 @@ namespace TowerDefence.UI
 
         private void RemoveTowerFromGrid()
         {
+            GameService.Instance.audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             GameService.Instance.gridManager.RemoveTowerAtCell();
+            GameService.Instance.audioManager.PlaySFX(SFXType.OnTowerRemovingSFX);
         }
 
         internal void SetTowerPrefab(TowerBase towerPrefab)

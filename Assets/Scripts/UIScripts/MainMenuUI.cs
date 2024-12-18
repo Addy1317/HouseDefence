@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TowerDefence.Services;
 using TowerDefence.VFX;
+using TowerDefence.Audio;
 
 namespace TowerDefence.UI
 {
@@ -28,7 +29,8 @@ namespace TowerDefence.UI
         [SerializeField] private GameObject _settingsPanel;
         [SerializeField] private Button _settingsPanelCloseButton;
 
-        [Header("VFX Manager")]
+        [Header("VFX/Audio Manager")]
+        [SerializeField] private AudioManager _audioManager;
         [SerializeField] private VFXManager _vfxManager;
 
         private void OnEnable()
@@ -66,23 +68,26 @@ namespace TowerDefence.UI
 
         private void OnPlayButton()
         {
+            _audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             SceneManager.LoadScene("MainGame");
         }
 
         private void OnControlsButton()
         {
+            _audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             _controlsPanel.SetActive(true);
         }
 
         private void OnSettingsButton()
         {
+            _audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             _settingsPanel.SetActive(true);
         }
 
         private void OnQuitButton()
         {
+            _audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             Application.Quit();
-            Debug.Log("Application is Quitting");
         }
 
         #endregion
@@ -91,6 +96,7 @@ namespace TowerDefence.UI
 
         private void OnControlPanelCloseButton()
         {
+            _audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             _controlsPanel.SetActive(false);
         }
 
@@ -100,6 +106,7 @@ namespace TowerDefence.UI
 
         private void OnSettingsPanelCloseButton()
         {
+            _audioManager.PlaySFX(SFXType.OnButtonClickSFX);
             _settingsPanel.SetActive(false);
         }
         #endregion

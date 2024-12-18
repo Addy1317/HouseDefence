@@ -7,6 +7,7 @@ using TowerDefence.Services;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TowerDefence.Audio;
 
 namespace TowerDefence.EnemySpawn
 {
@@ -80,6 +81,7 @@ namespace TowerDefence.EnemySpawn
 
                         enemy.gameObject.SetActive(true);
                         enemy.transform.position = _spawnPoint.position;
+                        GameService.Instance.audioManager.PlaySFX(SFXType.OnEnemySpawningSFX);
                         enemy.Initialize(_houseTarget);
 
                         _activeEnemies++;

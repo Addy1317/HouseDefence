@@ -73,7 +73,7 @@ namespace TowerDefence.VFX
         #endregion
 
         #region UI Scale Methods for Number Updates
-        internal void ScaleTextUpAndDown(TextMeshProUGUI text, float scaleUp = 1.2f, float scaleDuration = 0.2f, float scaleDown = 1f, float scaleDownDuration = 0.2f)
+        internal void ScaleTextUpAndDownEffect(TextMeshProUGUI text, float scaleUp = 1.2f, float scaleDuration = 0.2f, float scaleDown = 1f, float scaleDownDuration = 0.2f)
         {
             text.transform.DOKill();
             text.transform.DOScale(scaleUp, scaleDuration).SetEase(Ease.OutBack).OnKill(() =>

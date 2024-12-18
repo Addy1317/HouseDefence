@@ -49,7 +49,7 @@ namespace TowerDefence.Tower
                 if (targetEnemy != null)
                 {
                     RotateTowerTowards(targetEnemy);
-                    Shoot(targetEnemy);
+                    ShootToEnemy(targetEnemy);
                 }
             }
         }
@@ -63,13 +63,13 @@ namespace TowerDefence.Tower
 
             if (towerCurrentHealth <= 0)
             {
-                Die();
+                OnTowerDeath();
             }
         }
 
         protected abstract void UpdateTowerHealthBar();
 
-        protected virtual void Die()
+        protected virtual void OnTowerDeath()
         {
             Destroy(gameObject);
         }
@@ -94,7 +94,7 @@ namespace TowerDefence.Tower
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, towerSO.towerAttackSpeed * Time.deltaTime);
         }
 
-        private void Shoot(EnemyController targetEnemy)
+        private void ShootToEnemy(EnemyController targetEnemy)
         {
             BulletController bullet = GameService.Instance.bulletManager.GetBullet(); 
             bullet.transform.position = _towerHead.position; 
